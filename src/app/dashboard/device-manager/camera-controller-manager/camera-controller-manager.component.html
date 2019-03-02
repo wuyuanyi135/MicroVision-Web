@@ -1,0 +1,20 @@
+
+<div class="mat-h1 title">
+  <span>Camera Controller</span>
+  <mat-icon class="setting-icon">settings</mat-icon>
+</div>
+
+<div *ngIf="!ControllerList" class="mat-body">No Device Found</div>
+<mat-action-list>
+  <button mat-list-item class="item" *ngFor="let controller of ControllerList" (click)="toggleControllerConnection(controller)" >
+    <div fxLayout="row" fxFill>
+      <div class="item-text">
+        <p matLine class="mat-body">{{controller.getName()}}</p>
+        <p matLine class="mat-caption">{{controller.getDestination()}}</p>
+      </div>
+      <div class="spacer" fxFlex="1 1 auto"></div>
+      <div *ngIf="controller.getConnected()" class="mat-small">Connected</div>
+    </div>
+  </button>
+
+</mat-action-list>

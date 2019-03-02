@@ -1,0 +1,12 @@
+<div style="height: 100%" fxLayout="column">
+  <app-header></app-header>
+
+  <mat-sidenav-container style="flex: 1 1 auto">
+    <mat-sidenav [(opened)]="sidenavOpenState" mode="side">
+      <app-sidenav></app-sidenav>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
