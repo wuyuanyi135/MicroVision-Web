@@ -33,6 +33,14 @@
             "es5BrowserSupport": true
           },
           "configurations": {
+            "mock": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.mock.ts"
+                }
+              ]
+            },
             "hmr": {
               "fileReplacements": [
                 {
@@ -73,6 +81,10 @@
             "browserTarget": "MicroVisionWeb:build"
           },
           "configurations": {
+            "mock": {
+              "hmr": true,
+              "browserTarget": "MicroVisionWeb:build:mock"
+            },
             "hmr": {
               "hmr": true,
               "browserTarget": "MicroVisionWeb:build:hmr"

@@ -1,15 +1,20 @@
 import {Routes} from '@angular/router';
-import {MainComponent} from './dashboard/main/main.component';
+import {MainComponent} from './main/main.component';
+import {AcquisitionComponent} from './acquisition/acquisition.component';
 
 export const appRoutes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
-  },
-  {
-    path: 'dashboard',
-    loadChildren: './dashboard/dashboard.module#DashboardModule',
-  },
+    component: MainComponent,
+    children: [
+      {
+        path: 'acquisition',
+        component: AcquisitionComponent,
+      }, {
+        path: '',
+        component: AcquisitionComponent,
+      }
+    ]
+  }
 ];
 

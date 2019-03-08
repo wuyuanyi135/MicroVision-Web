@@ -1,16 +1,5 @@
 <div fxLayout="column" style="height: 100%;">
   <mat-action-list>
-
-    <button mat-list-item>
-      <mat-icon id="user-icon"> account_circle </mat-icon>
-      <div fxLayout="column" fxLayoutAlign="space-around start">
-        <div>User</div>
-        <div class="mat-small no-space">{{currentUser}} ({{permission}})</div>
-      </div>
-
-    </button>
-    <mat-divider></mat-divider>
-
     <div class="menu-container" *ngFor="let page of pagesList; last as isLast">
       <button mat-list-item [routerLink]="page.path">
         <mat-icon>{{page.icon}}</mat-icon>

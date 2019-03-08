@@ -10,9 +10,9 @@ import {grpc} from 'grpc-web-client';
 import {MicroVisionCGI} from 'src/protogen/cgi_service_pb_service';
 import {CgiService} from './cgi.service';
 import CameraConnection = ConnectDevicesRequest.CameraConnection;
-import {IdRequest} from '../../protogen/camera_definitions_pb';
+import {IdRequest} from '../protogen/camera_definitions_pb';
 import ControllerConnection = ConnectDevicesRequest.ControllerConnection;
-import {ConnectRequest} from '../../protogen/camera_controller_definitions_pb';
+import {ConnectRequest} from '../protogen/camera_controller_definitions_pb';
 import {UnaryMethodDefinition} from 'grpc-web-client/dist/typings/service';
 import {ProtobufMessage} from 'grpc-web-client/dist/typings/message';
 

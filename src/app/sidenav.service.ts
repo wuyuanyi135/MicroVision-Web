@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {MediaObserver} from '@angular/flex-layout';
 
 @Injectable({
   providedIn: 'root'
@@ -20,25 +21,24 @@ export class SidenavService {
   }
 
   public toggle() {
-    this.sidenavOpened = ! this.sidenavOpened;
+    this.sidenavOpened = !this.sidenavOpened;
     this.notifySidenavStateChanged();
   }
 
   private notifySidenavStateChanged() {
     this.sidenavObservable.next(this.sidenavOpened);
   }
+
   public onSidenavStateChanged(): Observable<boolean> {
     return this.sidenavObservable;
   }
-  constructor(breakpointObserver: BreakpointObserver) {
-    breakpointObserver.observe([
-      Breakpoints.HandsetLandscape,
-      Breakpoints.HandsetPortrait,
-    ]).subscribe(value => {
-      if (value.matches) {
-        this.close();
-      } else {
+
+  constructor(mediaObserver: MediaObserver) {
+    mediaObserver.media$.subscribe(mq => {
+      if (mediaObserver.isActive('gt-sm')) {
         this.open();
+      } else {
+        this.close();
       }
     });
   }
