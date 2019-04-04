@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {SidenavService} from '../sidenav.service';
+import {MediaObserver} from '@angular/flex-layout';
 
 @Component({
   selector: 'app-layouts',
@@ -9,12 +10,13 @@ import {SidenavService} from '../sidenav.service';
 export class LayoutsComponent implements OnInit {
 
   public sidenavOpenState = true;
-
-  constructor(sidenavService: SidenavService) {
-    sidenavService.onSidenavStateChanged().subscribe(value => this.sidenavOpenState = value);
+  constructor(
+    public sidenavService: SidenavService,
+  ) {
   }
 
   ngOnInit() {
+    // this.sidenavService.onSidenavStateChanged().subscribe(_value => this.sidenavOpenState = _value);
   }
 
 }

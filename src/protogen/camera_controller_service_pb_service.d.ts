@@ -11,7 +11,7 @@ type MicroVisionCameraControlServiceGetSerialDevices = {
   readonly service: typeof MicroVisionCameraControlService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof google_protobuf_empty_pb.Empty;
+  readonly requestType: typeof camera_controller_definitions_pb.GetSerialDevicesRequest;
   readonly responseType: typeof camera_controller_definitions_pb.SerialListResponse;
 };
 
@@ -30,7 +30,7 @@ type MicroVisionCameraControlServiceConnect = {
   readonly requestStream: false;
   readonly responseStream: false;
   readonly requestType: typeof camera_controller_definitions_pb.ConnectRequest;
-  readonly responseType: typeof camera_controller_definitions_pb.EmptyResponse;
+  readonly responseType: typeof google_protobuf_empty_pb.Empty;
 };
 
 type MicroVisionCameraControlServiceDisconnect = {
@@ -38,8 +38,8 @@ type MicroVisionCameraControlServiceDisconnect = {
   readonly service: typeof MicroVisionCameraControlService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof google_protobuf_empty_pb.Empty;
-  readonly responseType: typeof camera_controller_definitions_pb.EmptyResponse;
+  readonly requestType: typeof camera_controller_definitions_pb.ConnectRequest;
+  readonly responseType: typeof google_protobuf_empty_pb.Empty;
 };
 
 type MicroVisionCameraControlServiceGetDeviceVersion = {
@@ -57,7 +57,7 @@ type MicroVisionCameraControlServiceSetPower = {
   readonly requestStream: false;
   readonly responseStream: false;
   readonly requestType: typeof camera_controller_definitions_pb.SetPowerRequest;
-  readonly responseType: typeof camera_controller_definitions_pb.EmptyResponse;
+  readonly responseType: typeof google_protobuf_empty_pb.Empty;
 };
 
 type MicroVisionCameraControlServiceGetPower = {
@@ -75,7 +75,7 @@ type MicroVisionCameraControlServiceSetLaserParam = {
   readonly requestStream: false;
   readonly responseStream: false;
   readonly requestType: typeof camera_controller_definitions_pb.SetLaserRequest;
-  readonly responseType: typeof camera_controller_definitions_pb.EmptyResponse;
+  readonly responseType: typeof google_protobuf_empty_pb.Empty;
 };
 
 type MicroVisionCameraControlServiceGetLaserParam = {
@@ -93,7 +93,7 @@ type MicroVisionCameraControlServiceCommitParameter = {
   readonly requestStream: false;
   readonly responseStream: false;
   readonly requestType: typeof google_protobuf_empty_pb.Empty;
-  readonly responseType: typeof camera_controller_definitions_pb.EmptyResponse;
+  readonly responseType: typeof google_protobuf_empty_pb.Empty;
 };
 
 type MicroVisionCameraControlServiceControlLaser = {
@@ -102,7 +102,7 @@ type MicroVisionCameraControlServiceControlLaser = {
   readonly requestStream: false;
   readonly responseStream: false;
   readonly requestType: typeof camera_controller_definitions_pb.ControlLaserRequest;
-  readonly responseType: typeof camera_controller_definitions_pb.EmptyResponse;
+  readonly responseType: typeof google_protobuf_empty_pb.Empty;
 };
 
 type MicroVisionCameraControlServiceResetController = {
@@ -111,7 +111,7 @@ type MicroVisionCameraControlServiceResetController = {
   readonly requestStream: false;
   readonly responseStream: false;
   readonly requestType: typeof google_protobuf_empty_pb.Empty;
-  readonly responseType: typeof camera_controller_definitions_pb.EmptyResponse;
+  readonly responseType: typeof google_protobuf_empty_pb.Empty;
 };
 
 export class MicroVisionCameraControlService {
@@ -163,12 +163,12 @@ export class MicroVisionCameraControlServiceClient {
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
   getSerialDevices(
-    requestMessage: google_protobuf_empty_pb.Empty,
+    requestMessage: camera_controller_definitions_pb.GetSerialDevicesRequest,
     metadata: grpc.Metadata,
     callback: (error: ServiceError|null, responseMessage: camera_controller_definitions_pb.SerialListResponse|null) => void
   ): UnaryResponse;
   getSerialDevices(
-    requestMessage: google_protobuf_empty_pb.Empty,
+    requestMessage: camera_controller_definitions_pb.GetSerialDevicesRequest,
     callback: (error: ServiceError|null, responseMessage: camera_controller_definitions_pb.SerialListResponse|null) => void
   ): UnaryResponse;
   getDriverVersion(
@@ -183,20 +183,20 @@ export class MicroVisionCameraControlServiceClient {
   connect(
     requestMessage: camera_controller_definitions_pb.ConnectRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: camera_controller_definitions_pb.EmptyResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: google_protobuf_empty_pb.Empty|null) => void
   ): UnaryResponse;
   connect(
     requestMessage: camera_controller_definitions_pb.ConnectRequest,
-    callback: (error: ServiceError|null, responseMessage: camera_controller_definitions_pb.EmptyResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: google_protobuf_empty_pb.Empty|null) => void
   ): UnaryResponse;
   disconnect(
-    requestMessage: google_protobuf_empty_pb.Empty,
+    requestMessage: camera_controller_definitions_pb.ConnectRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: camera_controller_definitions_pb.EmptyResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: google_protobuf_empty_pb.Empty|null) => void
   ): UnaryResponse;
   disconnect(
-    requestMessage: google_protobuf_empty_pb.Empty,
-    callback: (error: ServiceError|null, responseMessage: camera_controller_definitions_pb.EmptyResponse|null) => void
+    requestMessage: camera_controller_definitions_pb.ConnectRequest,
+    callback: (error: ServiceError|null, responseMessage: google_protobuf_empty_pb.Empty|null) => void
   ): UnaryResponse;
   getDeviceVersion(
     requestMessage: google_protobuf_empty_pb.Empty,
@@ -210,11 +210,11 @@ export class MicroVisionCameraControlServiceClient {
   setPower(
     requestMessage: camera_controller_definitions_pb.SetPowerRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: camera_controller_definitions_pb.EmptyResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: google_protobuf_empty_pb.Empty|null) => void
   ): UnaryResponse;
   setPower(
     requestMessage: camera_controller_definitions_pb.SetPowerRequest,
-    callback: (error: ServiceError|null, responseMessage: camera_controller_definitions_pb.EmptyResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: google_protobuf_empty_pb.Empty|null) => void
   ): UnaryResponse;
   getPower(
     requestMessage: google_protobuf_empty_pb.Empty,
@@ -228,11 +228,11 @@ export class MicroVisionCameraControlServiceClient {
   setLaserParam(
     requestMessage: camera_controller_definitions_pb.SetLaserRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: camera_controller_definitions_pb.EmptyResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: google_protobuf_empty_pb.Empty|null) => void
   ): UnaryResponse;
   setLaserParam(
     requestMessage: camera_controller_definitions_pb.SetLaserRequest,
-    callback: (error: ServiceError|null, responseMessage: camera_controller_definitions_pb.EmptyResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: google_protobuf_empty_pb.Empty|null) => void
   ): UnaryResponse;
   getLaserParam(
     requestMessage: google_protobuf_empty_pb.Empty,
@@ -246,29 +246,29 @@ export class MicroVisionCameraControlServiceClient {
   commitParameter(
     requestMessage: google_protobuf_empty_pb.Empty,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: camera_controller_definitions_pb.EmptyResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: google_protobuf_empty_pb.Empty|null) => void
   ): UnaryResponse;
   commitParameter(
     requestMessage: google_protobuf_empty_pb.Empty,
-    callback: (error: ServiceError|null, responseMessage: camera_controller_definitions_pb.EmptyResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: google_protobuf_empty_pb.Empty|null) => void
   ): UnaryResponse;
   controlLaser(
     requestMessage: camera_controller_definitions_pb.ControlLaserRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: camera_controller_definitions_pb.EmptyResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: google_protobuf_empty_pb.Empty|null) => void
   ): UnaryResponse;
   controlLaser(
     requestMessage: camera_controller_definitions_pb.ControlLaserRequest,
-    callback: (error: ServiceError|null, responseMessage: camera_controller_definitions_pb.EmptyResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: google_protobuf_empty_pb.Empty|null) => void
   ): UnaryResponse;
   resetController(
     requestMessage: google_protobuf_empty_pb.Empty,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: camera_controller_definitions_pb.EmptyResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: google_protobuf_empty_pb.Empty|null) => void
   ): UnaryResponse;
   resetController(
     requestMessage: google_protobuf_empty_pb.Empty,
-    callback: (error: ServiceError|null, responseMessage: camera_controller_definitions_pb.EmptyResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: google_protobuf_empty_pb.Empty|null) => void
   ): UnaryResponse;
 }
 

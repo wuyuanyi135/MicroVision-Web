@@ -1,0 +1,10 @@
+<div *ngIf="isRecording; else standby">
+  <button mat-flat-button color="primary" class="recording-control-button">
+    STOP
+  </button>
+</div>
+<ng-template #standby>
+  <button mat-flat-button color="primary" class="recording-control-button">
+    START
+  </button>
+</ng-template>

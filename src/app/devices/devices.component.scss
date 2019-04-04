@@ -1,0 +1,45 @@
+@import "~@angular/material/theming";
+#container {
+  margin: 10px;
+}
+
+table {
+  width: 100%;
+  margin: 10px 0;
+  border-spacing: 50px 0;
+  border-collapse: separate;
+}
+
+th {
+  vertical-align: middle;
+}
+
+.header {
+  color: mat-color($mat-gray, 800);
+}
+
+[mat-fab] {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+}
+.icon-col {
+  width: 35px;
+  font-size: 24px;
+  text-align: center;
+}
+
+td, th {
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 30px;
+  text-overflow: ellipsis;
+}
+
+.index-col {
+  width: 50px;
+}
+
+.connected {
+  background: mat-color($mat-green, 100);
+}

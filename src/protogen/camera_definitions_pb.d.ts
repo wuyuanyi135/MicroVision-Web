@@ -84,23 +84,27 @@ export namespace AvailableAdaptersResponse {
   }
 }
 
-export class AdapterRequest extends jspb.Message {
-  getName(): string;
-  setName(value: string): void;
+export class GetDevicesRequest extends jspb.Message {
+  getAdapterName(): string;
+  setAdapterName(value: string): void;
+
+  getUsecache(): boolean;
+  setUsecache(value: boolean): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AdapterRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: AdapterRequest): AdapterRequest.AsObject;
+  toObject(includeInstance?: boolean): GetDevicesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetDevicesRequest): GetDevicesRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: AdapterRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AdapterRequest;
-  static deserializeBinaryFromReader(message: AdapterRequest, reader: jspb.BinaryReader): AdapterRequest;
+  static serializeBinaryToWriter(message: GetDevicesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetDevicesRequest;
+  static deserializeBinaryFromReader(message: GetDevicesRequest, reader: jspb.BinaryReader): GetDevicesRequest;
 }
 
-export namespace AdapterRequest {
+export namespace GetDevicesRequest {
   export type AsObject = {
-    name: string,
+    adapterName: string,
+    usecache: boolean,
   }
 }
 
@@ -224,23 +228,23 @@ export namespace DeviceInfo {
   }
 }
 
-export class DeviceListResponse extends jspb.Message {
+export class GetDevicesResponse extends jspb.Message {
   clearDevicesList(): void;
   getDevicesList(): Array<DeviceInfo>;
   setDevicesList(value: Array<DeviceInfo>): void;
   addDevices(value?: DeviceInfo, index?: number): DeviceInfo;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): DeviceListResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: DeviceListResponse): DeviceListResponse.AsObject;
+  toObject(includeInstance?: boolean): GetDevicesResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetDevicesResponse): GetDevicesResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: DeviceListResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): DeviceListResponse;
-  static deserializeBinaryFromReader(message: DeviceListResponse, reader: jspb.BinaryReader): DeviceListResponse;
+  static serializeBinaryToWriter(message: GetDevicesResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetDevicesResponse;
+  static deserializeBinaryFromReader(message: GetDevicesResponse, reader: jspb.BinaryReader): GetDevicesResponse;
 }
 
-export namespace DeviceListResponse {
+export namespace GetDevicesResponse {
   export type AsObject = {
     devicesList: Array<DeviceInfo.AsObject>,
   }

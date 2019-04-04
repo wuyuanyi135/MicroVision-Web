@@ -53,19 +53,23 @@ export namespace SerialListResponse {
   }
 }
 
-export class EmptyResponse extends jspb.Message {
+export class GetSerialDevicesRequest extends jspb.Message {
+  getUsecache(): boolean;
+  setUsecache(value: boolean): void;
+
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): EmptyResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: EmptyResponse): EmptyResponse.AsObject;
+  toObject(includeInstance?: boolean): GetSerialDevicesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetSerialDevicesRequest): GetSerialDevicesRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: EmptyResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): EmptyResponse;
-  static deserializeBinaryFromReader(message: EmptyResponse, reader: jspb.BinaryReader): EmptyResponse;
+  static serializeBinaryToWriter(message: GetSerialDevicesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetSerialDevicesRequest;
+  static deserializeBinaryFromReader(message: GetSerialDevicesRequest, reader: jspb.BinaryReader): GetSerialDevicesRequest;
 }
 
-export namespace EmptyResponse {
+export namespace GetSerialDevicesRequest {
   export type AsObject = {
+    usecache: boolean,
   }
 }
 

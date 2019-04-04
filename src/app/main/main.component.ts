@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import {IPreviewService, PREVIEW_SERVICE} from '../datasource/preview/preview';
+import {IPreviewService, PREVIEW_SERVICE} from '../core/api/preview/preview';
 
 @Component({
   selector: 'app-main',

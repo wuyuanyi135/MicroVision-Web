@@ -26,8 +26,8 @@ MicroVisionCameraService.GetDevices = {
   service: MicroVisionCameraService,
   requestStream: false,
   responseStream: false,
-  requestType: camera_definitions_pb.AdapterRequest,
-  responseType: camera_definitions_pb.DeviceListResponse
+  requestType: camera_definitions_pb.GetDevicesRequest,
+  responseType: camera_definitions_pb.GetDevicesResponse
 };
 
 MicroVisionCameraService.QueryDeviceById = {

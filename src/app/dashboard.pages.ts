@@ -1,17 +1,22 @@
 export const dashboardPages = [
   {
+    title: 'Devices',
+    icon: 'settings_input_hdmi',
+    path: '/devices',
+  },
+  {
     title: 'Acquisition',
     icon: 'camera',
-    path: 'acquisition',
+    path: '/acquisition',
   },
   {
     title: 'Database',
-    icon: 'storage',
-    path: 'database',
+    icon: 'perm_media',
+    path: '/database',
   },
   {
     title: 'Preference',
     icon: 'settings',
-    path: '',
+    path: '/preference',
   }
 ];

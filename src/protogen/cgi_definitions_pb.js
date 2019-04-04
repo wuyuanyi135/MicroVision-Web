@@ -13,15 +13,30 @@ var global = Function('return this')();
 
 var camera_controller_definitions_pb = require('./camera_controller_definitions_pb.js');
 var camera_definitions_pb = require('./camera_definitions_pb.js');
-goog.exportSymbol('proto.mvcgi.ConnectDevicesRequest', null, global);
-goog.exportSymbol('proto.mvcgi.ConnectDevicesRequest.CameraConnection', null, global);
-goog.exportSymbol('proto.mvcgi.ConnectDevicesRequest.ControllerConnection', null, global);
-goog.exportSymbol('proto.mvcgi.ConnectDevicesResponse', null, global);
+goog.exportSymbol('proto.mvcgi.BackendServerInterfaceRequest', null, global);
+goog.exportSymbol('proto.mvcgi.BackendServerInterfaceRequest.Connection', null, global);
+goog.exportSymbol('proto.mvcgi.BackendServerInterfaceResponse', null, global);
+goog.exportSymbol('proto.mvcgi.CameraCapturingRequest', null, global);
+goog.exportSymbol('proto.mvcgi.CameraCapturingResponse', null, global);
+goog.exportSymbol('proto.mvcgi.CameraStream', null, global);
+goog.exportSymbol('proto.mvcgi.CameraStreamingRequest', null, global);
 goog.exportSymbol('proto.mvcgi.ConnectionAction', null, global);
 goog.exportSymbol('proto.mvcgi.ConnectionStatus', null, global);
+goog.exportSymbol('proto.mvcgi.DeviceInterfaceRequest', null, global);
+goog.exportSymbol('proto.mvcgi.DeviceInterfaceRequest.Options', null, global);
+goog.exportSymbol('proto.mvcgi.DeviceInterfaceResponse', null, global);
+goog.exportSymbol('proto.mvcgi.DeviceInterfaceResponse.AffectedDevice', null, global);
+goog.exportSymbol('proto.mvcgi.DevicePair', null, global);
+goog.exportSymbol('proto.mvcgi.DeviceParameterInterfaceRequest', null, global);
+goog.exportSymbol('proto.mvcgi.DeviceParameterInterfaceRequest.CameraParameters', null, global);
+goog.exportSymbol('proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters', null, global);
+goog.exportSymbol('proto.mvcgi.DeviceParameterInterfaceResponse', null, global);
+goog.exportSymbol('proto.mvcgi.DeviceParameterInterfaceResponse.CameraParameters', null, global);
+goog.exportSymbol('proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters', null, global);
 goog.exportSymbol('proto.mvcgi.GetVersionRequest', null, global);
 goog.exportSymbol('proto.mvcgi.GetVersionResponse', null, global);
 goog.exportSymbol('proto.mvcgi.ListDevicesRequest', null, global);
+goog.exportSymbol('proto.mvcgi.ListDevicesRequest.Options', null, global);
 goog.exportSymbol('proto.mvcgi.ListDevicesResponse', null, global);
 
 /**
@@ -292,6 +307,547 @@ proto.mvcgi.GetVersionResponse.prototype.setVersion = function(value) {
  * @extends {jspb.Message}
  * @constructor
  */
+proto.mvcgi.BackendServerInterfaceRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.mvcgi.BackendServerInterfaceRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.mvcgi.BackendServerInterfaceRequest.displayName = 'proto.mvcgi.BackendServerInterfaceRequest';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.mvcgi.BackendServerInterfaceRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.mvcgi.BackendServerInterfaceRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.mvcgi.BackendServerInterfaceRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.mvcgi.BackendServerInterfaceRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    controllerConnection: (f = msg.getControllerConnection()) && proto.mvcgi.BackendServerInterfaceRequest.Connection.toObject(includeInstance, f),
+    cameraConnection: (f = msg.getCameraConnection()) && proto.mvcgi.BackendServerInterfaceRequest.Connection.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.mvcgi.BackendServerInterfaceRequest}
+ */
+proto.mvcgi.BackendServerInterfaceRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.mvcgi.BackendServerInterfaceRequest;
+  return proto.mvcgi.BackendServerInterfaceRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.mvcgi.BackendServerInterfaceRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.mvcgi.BackendServerInterfaceRequest}
+ */
+proto.mvcgi.BackendServerInterfaceRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.mvcgi.BackendServerInterfaceRequest.Connection;
+      reader.readMessage(value,proto.mvcgi.BackendServerInterfaceRequest.Connection.deserializeBinaryFromReader);
+      msg.setControllerConnection(value);
+      break;
+    case 2:
+      var value = new proto.mvcgi.BackendServerInterfaceRequest.Connection;
+      reader.readMessage(value,proto.mvcgi.BackendServerInterfaceRequest.Connection.deserializeBinaryFromReader);
+      msg.setCameraConnection(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.mvcgi.BackendServerInterfaceRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.mvcgi.BackendServerInterfaceRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.mvcgi.BackendServerInterfaceRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.mvcgi.BackendServerInterfaceRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getControllerConnection();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      proto.mvcgi.BackendServerInterfaceRequest.Connection.serializeBinaryToWriter
+    );
+  }
+  f = message.getCameraConnection();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      proto.mvcgi.BackendServerInterfaceRequest.Connection.serializeBinaryToWriter
+    );
+  }
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.mvcgi.BackendServerInterfaceRequest.Connection = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.mvcgi.BackendServerInterfaceRequest.Connection, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.mvcgi.BackendServerInterfaceRequest.Connection.displayName = 'proto.mvcgi.BackendServerInterfaceRequest.Connection';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.mvcgi.BackendServerInterfaceRequest.Connection.prototype.toObject = function(opt_includeInstance) {
+  return proto.mvcgi.BackendServerInterfaceRequest.Connection.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.mvcgi.BackendServerInterfaceRequest.Connection} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.mvcgi.BackendServerInterfaceRequest.Connection.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    action: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    url: jspb.Message.getFieldWithDefault(msg, 2, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.mvcgi.BackendServerInterfaceRequest.Connection}
+ */
+proto.mvcgi.BackendServerInterfaceRequest.Connection.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.mvcgi.BackendServerInterfaceRequest.Connection;
+  return proto.mvcgi.BackendServerInterfaceRequest.Connection.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.mvcgi.BackendServerInterfaceRequest.Connection} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.mvcgi.BackendServerInterfaceRequest.Connection}
+ */
+proto.mvcgi.BackendServerInterfaceRequest.Connection.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {!proto.mvcgi.ConnectionAction} */ (reader.readEnum());
+      msg.setAction(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setUrl(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.mvcgi.BackendServerInterfaceRequest.Connection.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.mvcgi.BackendServerInterfaceRequest.Connection.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.mvcgi.BackendServerInterfaceRequest.Connection} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.mvcgi.BackendServerInterfaceRequest.Connection.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getAction();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      1,
+      f
+    );
+  }
+  f = message.getUrl();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional ConnectionAction action = 1;
+ * @return {!proto.mvcgi.ConnectionAction}
+ */
+proto.mvcgi.BackendServerInterfaceRequest.Connection.prototype.getAction = function() {
+  return /** @type {!proto.mvcgi.ConnectionAction} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/** @param {!proto.mvcgi.ConnectionAction} value */
+proto.mvcgi.BackendServerInterfaceRequest.Connection.prototype.setAction = function(value) {
+  jspb.Message.setProto3EnumField(this, 1, value);
+};
+
+
+/**
+ * optional string url = 2;
+ * @return {string}
+ */
+proto.mvcgi.BackendServerInterfaceRequest.Connection.prototype.getUrl = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/** @param {string} value */
+proto.mvcgi.BackendServerInterfaceRequest.Connection.prototype.setUrl = function(value) {
+  jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional Connection controller_connection = 1;
+ * @return {?proto.mvcgi.BackendServerInterfaceRequest.Connection}
+ */
+proto.mvcgi.BackendServerInterfaceRequest.prototype.getControllerConnection = function() {
+  return /** @type{?proto.mvcgi.BackendServerInterfaceRequest.Connection} */ (
+    jspb.Message.getWrapperField(this, proto.mvcgi.BackendServerInterfaceRequest.Connection, 1));
+};
+
+
+/** @param {?proto.mvcgi.BackendServerInterfaceRequest.Connection|undefined} value */
+proto.mvcgi.BackendServerInterfaceRequest.prototype.setControllerConnection = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.mvcgi.BackendServerInterfaceRequest.prototype.clearControllerConnection = function() {
+  this.setControllerConnection(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.mvcgi.BackendServerInterfaceRequest.prototype.hasControllerConnection = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional Connection camera_connection = 2;
+ * @return {?proto.mvcgi.BackendServerInterfaceRequest.Connection}
+ */
+proto.mvcgi.BackendServerInterfaceRequest.prototype.getCameraConnection = function() {
+  return /** @type{?proto.mvcgi.BackendServerInterfaceRequest.Connection} */ (
+    jspb.Message.getWrapperField(this, proto.mvcgi.BackendServerInterfaceRequest.Connection, 2));
+};
+
+
+/** @param {?proto.mvcgi.BackendServerInterfaceRequest.Connection|undefined} value */
+proto.mvcgi.BackendServerInterfaceRequest.prototype.setCameraConnection = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.mvcgi.BackendServerInterfaceRequest.prototype.clearCameraConnection = function() {
+  this.setCameraConnection(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.mvcgi.BackendServerInterfaceRequest.prototype.hasCameraConnection = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.mvcgi.BackendServerInterfaceResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.mvcgi.BackendServerInterfaceResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.mvcgi.BackendServerInterfaceResponse.displayName = 'proto.mvcgi.BackendServerInterfaceResponse';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.mvcgi.BackendServerInterfaceResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.mvcgi.BackendServerInterfaceResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.mvcgi.BackendServerInterfaceResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.mvcgi.BackendServerInterfaceResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    cameraServer: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    controllerServer: jspb.Message.getFieldWithDefault(msg, 2, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.mvcgi.BackendServerInterfaceResponse}
+ */
+proto.mvcgi.BackendServerInterfaceResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.mvcgi.BackendServerInterfaceResponse;
+  return proto.mvcgi.BackendServerInterfaceResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.mvcgi.BackendServerInterfaceResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.mvcgi.BackendServerInterfaceResponse}
+ */
+proto.mvcgi.BackendServerInterfaceResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {!proto.mvcgi.ConnectionStatus} */ (reader.readEnum());
+      msg.setCameraServer(value);
+      break;
+    case 2:
+      var value = /** @type {!proto.mvcgi.ConnectionStatus} */ (reader.readEnum());
+      msg.setControllerServer(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.mvcgi.BackendServerInterfaceResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.mvcgi.BackendServerInterfaceResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.mvcgi.BackendServerInterfaceResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.mvcgi.BackendServerInterfaceResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getCameraServer();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      1,
+      f
+    );
+  }
+  f = message.getControllerServer();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional ConnectionStatus camera_server = 1;
+ * @return {!proto.mvcgi.ConnectionStatus}
+ */
+proto.mvcgi.BackendServerInterfaceResponse.prototype.getCameraServer = function() {
+  return /** @type {!proto.mvcgi.ConnectionStatus} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/** @param {!proto.mvcgi.ConnectionStatus} value */
+proto.mvcgi.BackendServerInterfaceResponse.prototype.setCameraServer = function(value) {
+  jspb.Message.setProto3EnumField(this, 1, value);
+};
+
+
+/**
+ * optional ConnectionStatus controller_server = 2;
+ * @return {!proto.mvcgi.ConnectionStatus}
+ */
+proto.mvcgi.BackendServerInterfaceResponse.prototype.getControllerServer = function() {
+  return /** @type {!proto.mvcgi.ConnectionStatus} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/** @param {!proto.mvcgi.ConnectionStatus} value */
+proto.mvcgi.BackendServerInterfaceResponse.prototype.setControllerServer = function(value) {
+  jspb.Message.setProto3EnumField(this, 2, value);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
 proto.mvcgi.ListDevicesRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
@@ -328,9 +884,8 @@ proto.mvcgi.ListDevicesRequest.prototype.toObject = function(opt_includeInstance
  */
 proto.mvcgi.ListDevicesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    controllerUrl: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    cameraUrl: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    useCache: jspb.Message.getFieldWithDefault(msg, 3, false)
+    listCamera: (f = msg.getListCamera()) && proto.mvcgi.ListDevicesRequest.Options.toObject(includeInstance, f),
+    listController: (f = msg.getListController()) && proto.mvcgi.ListDevicesRequest.Options.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -368,16 +923,14 @@ proto.mvcgi.ListDevicesRequest.deserializeBinaryFromReader = function(msg, reade
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setControllerUrl(value);
+      var value = new proto.mvcgi.ListDevicesRequest.Options;
+      reader.readMessage(value,proto.mvcgi.ListDevicesRequest.Options.deserializeBinaryFromReader);
+      msg.setListCamera(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setCameraUrl(value);
-      break;
-    case 3:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setUseCache(value);
+      var value = new proto.mvcgi.ListDevicesRequest.Options;
+      reader.readMessage(value,proto.mvcgi.ListDevicesRequest.Options.deserializeBinaryFromReader);
+      msg.setListController(value);
       break;
     default:
       reader.skipField();
@@ -408,74 +961,226 @@ proto.mvcgi.ListDevicesRequest.prototype.serializeBinary = function() {
  */
 proto.mvcgi.ListDevicesRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getControllerUrl();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getListCamera();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      proto.mvcgi.ListDevicesRequest.Options.serializeBinaryToWriter
+    );
+  }
+  f = message.getListController();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      proto.mvcgi.ListDevicesRequest.Options.serializeBinaryToWriter
+    );
+  }
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.mvcgi.ListDevicesRequest.Options = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.mvcgi.ListDevicesRequest.Options, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.mvcgi.ListDevicesRequest.Options.displayName = 'proto.mvcgi.ListDevicesRequest.Options';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.mvcgi.ListDevicesRequest.Options.prototype.toObject = function(opt_includeInstance) {
+  return proto.mvcgi.ListDevicesRequest.Options.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.mvcgi.ListDevicesRequest.Options} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.mvcgi.ListDevicesRequest.Options.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    useCache: jspb.Message.getFieldWithDefault(msg, 1, false)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.mvcgi.ListDevicesRequest.Options}
+ */
+proto.mvcgi.ListDevicesRequest.Options.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.mvcgi.ListDevicesRequest.Options;
+  return proto.mvcgi.ListDevicesRequest.Options.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.mvcgi.ListDevicesRequest.Options} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.mvcgi.ListDevicesRequest.Options}
+ */
+proto.mvcgi.ListDevicesRequest.Options.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setUseCache(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.mvcgi.ListDevicesRequest.Options.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.mvcgi.ListDevicesRequest.Options.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.mvcgi.ListDevicesRequest.Options} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.mvcgi.ListDevicesRequest.Options.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getUseCache();
+  if (f) {
+    writer.writeBool(
       1,
       f
     );
   }
-  f = message.getCameraUrl();
-  if (f.length > 0) {
-    writer.writeString(
-      2,
-      f
-    );
-  }
-  f = message.getUseCache();
-  if (f) {
-    writer.writeBool(
-      3,
-      f
-    );
-  }
 };
 
 
 /**
- * optional string controller_url = 1;
- * @return {string}
- */
-proto.mvcgi.ListDevicesRequest.prototype.getControllerUrl = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/** @param {string} value */
-proto.mvcgi.ListDevicesRequest.prototype.setControllerUrl = function(value) {
-  jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * optional string camera_url = 2;
- * @return {string}
- */
-proto.mvcgi.ListDevicesRequest.prototype.getCameraUrl = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
-};
-
-
-/** @param {string} value */
-proto.mvcgi.ListDevicesRequest.prototype.setCameraUrl = function(value) {
-  jspb.Message.setProto3StringField(this, 2, value);
-};
-
-
-/**
- * optional bool use_cache = 3;
+ * optional bool use_cache = 1;
  * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
  * You should avoid comparisons like {@code val === true/false} in those cases.
  * @return {boolean}
  */
-proto.mvcgi.ListDevicesRequest.prototype.getUseCache = function() {
-  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 3, false));
+proto.mvcgi.ListDevicesRequest.Options.prototype.getUseCache = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 1, false));
 };
 
 
 /** @param {boolean} value */
-proto.mvcgi.ListDevicesRequest.prototype.setUseCache = function(value) {
-  jspb.Message.setProto3BooleanField(this, 3, value);
+proto.mvcgi.ListDevicesRequest.Options.prototype.setUseCache = function(value) {
+  jspb.Message.setProto3BooleanField(this, 1, value);
+};
+
+
+/**
+ * optional Options list_camera = 1;
+ * @return {?proto.mvcgi.ListDevicesRequest.Options}
+ */
+proto.mvcgi.ListDevicesRequest.prototype.getListCamera = function() {
+  return /** @type{?proto.mvcgi.ListDevicesRequest.Options} */ (
+    jspb.Message.getWrapperField(this, proto.mvcgi.ListDevicesRequest.Options, 1));
+};
+
+
+/** @param {?proto.mvcgi.ListDevicesRequest.Options|undefined} value */
+proto.mvcgi.ListDevicesRequest.prototype.setListCamera = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.mvcgi.ListDevicesRequest.prototype.clearListCamera = function() {
+  this.setListCamera(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.mvcgi.ListDevicesRequest.prototype.hasListCamera = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional Options list_controller = 2;
+ * @return {?proto.mvcgi.ListDevicesRequest.Options}
+ */
+proto.mvcgi.ListDevicesRequest.prototype.getListController = function() {
+  return /** @type{?proto.mvcgi.ListDevicesRequest.Options} */ (
+    jspb.Message.getWrapperField(this, proto.mvcgi.ListDevicesRequest.Options, 2));
+};
+
+
+/** @param {?proto.mvcgi.ListDevicesRequest.Options|undefined} value */
+proto.mvcgi.ListDevicesRequest.prototype.setListController = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.mvcgi.ListDevicesRequest.prototype.clearListController = function() {
+  this.setListController(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.mvcgi.ListDevicesRequest.prototype.hasListController = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
@@ -704,12 +1409,12 @@ proto.mvcgi.ListDevicesResponse.prototype.clearDevicesList = function() {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.mvcgi.ConnectDevicesRequest = function(opt_data) {
+proto.mvcgi.DeviceInterfaceRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.mvcgi.ConnectDevicesRequest, jspb.Message);
+goog.inherits(proto.mvcgi.DeviceInterfaceRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.mvcgi.ConnectDevicesRequest.displayName = 'proto.mvcgi.ConnectDevicesRequest';
+  proto.mvcgi.DeviceInterfaceRequest.displayName = 'proto.mvcgi.DeviceInterfaceRequest';
 }
 
 
@@ -724,8 +1429,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     for transitional soy proto support: http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.mvcgi.ConnectDevicesRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.mvcgi.ConnectDevicesRequest.toObject(opt_includeInstance, this);
+proto.mvcgi.DeviceInterfaceRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.mvcgi.DeviceInterfaceRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -734,14 +1439,14 @@ proto.mvcgi.ConnectDevicesRequest.prototype.toObject = function(opt_includeInsta
  * @param {boolean|undefined} includeInstance Whether to include the JSPB
  *     instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.mvcgi.ConnectDevicesRequest} msg The msg instance to transform.
+ * @param {!proto.mvcgi.DeviceInterfaceRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.mvcgi.ConnectDevicesRequest.toObject = function(includeInstance, msg) {
+proto.mvcgi.DeviceInterfaceRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    controllerConnection: (f = msg.getControllerConnection()) && proto.mvcgi.ConnectDevicesRequest.ControllerConnection.toObject(includeInstance, f),
-    cameraConnection: (f = msg.getCameraConnection()) && proto.mvcgi.ConnectDevicesRequest.CameraConnection.toObject(includeInstance, f)
+    controlCamera: (f = msg.getControlCamera()) && proto.mvcgi.DeviceInterfaceRequest.Options.toObject(includeInstance, f),
+    controlController: (f = msg.getControlController()) && proto.mvcgi.DeviceInterfaceRequest.Options.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -755,23 +1460,23 @@ proto.mvcgi.ConnectDevicesRequest.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.mvcgi.ConnectDevicesRequest}
+ * @return {!proto.mvcgi.DeviceInterfaceRequest}
  */
-proto.mvcgi.ConnectDevicesRequest.deserializeBinary = function(bytes) {
+proto.mvcgi.DeviceInterfaceRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.mvcgi.ConnectDevicesRequest;
-  return proto.mvcgi.ConnectDevicesRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.mvcgi.DeviceInterfaceRequest;
+  return proto.mvcgi.DeviceInterfaceRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.mvcgi.ConnectDevicesRequest} msg The message object to deserialize into.
+ * @param {!proto.mvcgi.DeviceInterfaceRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.mvcgi.ConnectDevicesRequest}
+ * @return {!proto.mvcgi.DeviceInterfaceRequest}
  */
-proto.mvcgi.ConnectDevicesRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.mvcgi.DeviceInterfaceRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -779,14 +1484,14 @@ proto.mvcgi.ConnectDevicesRequest.deserializeBinaryFromReader = function(msg, re
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.mvcgi.ConnectDevicesRequest.ControllerConnection;
-      reader.readMessage(value,proto.mvcgi.ConnectDevicesRequest.ControllerConnection.deserializeBinaryFromReader);
-      msg.setControllerConnection(value);
+      var value = new proto.mvcgi.DeviceInterfaceRequest.Options;
+      reader.readMessage(value,proto.mvcgi.DeviceInterfaceRequest.Options.deserializeBinaryFromReader);
+      msg.setControlCamera(value);
       break;
     case 2:
-      var value = new proto.mvcgi.ConnectDevicesRequest.CameraConnection;
-      reader.readMessage(value,proto.mvcgi.ConnectDevicesRequest.CameraConnection.deserializeBinaryFromReader);
-      msg.setCameraConnection(value);
+      var value = new proto.mvcgi.DeviceInterfaceRequest.Options;
+      reader.readMessage(value,proto.mvcgi.DeviceInterfaceRequest.Options.deserializeBinaryFromReader);
+      msg.setControlController(value);
       break;
     default:
       reader.skipField();
@@ -801,9 +1506,9 @@ proto.mvcgi.ConnectDevicesRequest.deserializeBinaryFromReader = function(msg, re
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.mvcgi.ConnectDevicesRequest.prototype.serializeBinary = function() {
+proto.mvcgi.DeviceInterfaceRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.mvcgi.ConnectDevicesRequest.serializeBinaryToWriter(this, writer);
+  proto.mvcgi.DeviceInterfaceRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -811,26 +1516,26 @@ proto.mvcgi.ConnectDevicesRequest.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.mvcgi.ConnectDevicesRequest} message
+ * @param {!proto.mvcgi.DeviceInterfaceRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.mvcgi.ConnectDevicesRequest.serializeBinaryToWriter = function(message, writer) {
+proto.mvcgi.DeviceInterfaceRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getControllerConnection();
+  f = message.getControlCamera();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.mvcgi.ConnectDevicesRequest.ControllerConnection.serializeBinaryToWriter
+      proto.mvcgi.DeviceInterfaceRequest.Options.serializeBinaryToWriter
     );
   }
-  f = message.getCameraConnection();
+  f = message.getControlController();
   if (f != null) {
     writer.writeMessage(
       2,
       f,
-      proto.mvcgi.ConnectDevicesRequest.CameraConnection.serializeBinaryToWriter
+      proto.mvcgi.DeviceInterfaceRequest.Options.serializeBinaryToWriter
     );
   }
 };
@@ -847,12 +1552,12 @@ proto.mvcgi.ConnectDevicesRequest.serializeBinaryToWriter = function(message, wr
  * @extends {jspb.Message}
  * @constructor
  */
-proto.mvcgi.ConnectDevicesRequest.ControllerConnection = function(opt_data) {
+proto.mvcgi.DeviceInterfaceRequest.Options = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.mvcgi.ConnectDevicesRequest.ControllerConnection, jspb.Message);
+goog.inherits(proto.mvcgi.DeviceInterfaceRequest.Options, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.mvcgi.ConnectDevicesRequest.ControllerConnection.displayName = 'proto.mvcgi.ConnectDevicesRequest.ControllerConnection';
+  proto.mvcgi.DeviceInterfaceRequest.Options.displayName = 'proto.mvcgi.DeviceInterfaceRequest.Options';
 }
 
 
@@ -867,8 +1572,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     for transitional soy proto support: http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.mvcgi.ConnectDevicesRequest.ControllerConnection.prototype.toObject = function(opt_includeInstance) {
-  return proto.mvcgi.ConnectDevicesRequest.ControllerConnection.toObject(opt_includeInstance, this);
+proto.mvcgi.DeviceInterfaceRequest.Options.prototype.toObject = function(opt_includeInstance) {
+  return proto.mvcgi.DeviceInterfaceRequest.Options.toObject(opt_includeInstance, this);
 };
 
 
@@ -877,14 +1582,14 @@ proto.mvcgi.ConnectDevicesRequest.ControllerConnection.prototype.toObject = func
  * @param {boolean|undefined} includeInstance Whether to include the JSPB
  *     instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.mvcgi.ConnectDevicesRequest.ControllerConnection} msg The msg instance to transform.
+ * @param {!proto.mvcgi.DeviceInterfaceRequest.Options} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.mvcgi.ConnectDevicesRequest.ControllerConnection.toObject = function(includeInstance, msg) {
+proto.mvcgi.DeviceInterfaceRequest.Options.toObject = function(includeInstance, msg) {
   var f, obj = {
     action: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    connectionInfo: (f = msg.getConnectionInfo()) && camera_controller_definitions_pb.ConnectRequest.toObject(includeInstance, f)
+    id: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -898,23 +1603,23 @@ proto.mvcgi.ConnectDevicesRequest.ControllerConnection.toObject = function(inclu
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.mvcgi.ConnectDevicesRequest.ControllerConnection}
+ * @return {!proto.mvcgi.DeviceInterfaceRequest.Options}
  */
-proto.mvcgi.ConnectDevicesRequest.ControllerConnection.deserializeBinary = function(bytes) {
+proto.mvcgi.DeviceInterfaceRequest.Options.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.mvcgi.ConnectDevicesRequest.ControllerConnection;
-  return proto.mvcgi.ConnectDevicesRequest.ControllerConnection.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.mvcgi.DeviceInterfaceRequest.Options;
+  return proto.mvcgi.DeviceInterfaceRequest.Options.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.mvcgi.ConnectDevicesRequest.ControllerConnection} msg The message object to deserialize into.
+ * @param {!proto.mvcgi.DeviceInterfaceRequest.Options} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.mvcgi.ConnectDevicesRequest.ControllerConnection}
+ * @return {!proto.mvcgi.DeviceInterfaceRequest.Options}
  */
-proto.mvcgi.ConnectDevicesRequest.ControllerConnection.deserializeBinaryFromReader = function(msg, reader) {
+proto.mvcgi.DeviceInterfaceRequest.Options.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -926,9 +1631,8 @@ proto.mvcgi.ConnectDevicesRequest.ControllerConnection.deserializeBinaryFromRead
       msg.setAction(value);
       break;
     case 2:
-      var value = new camera_controller_definitions_pb.ConnectRequest;
-      reader.readMessage(value,camera_controller_definitions_pb.ConnectRequest.deserializeBinaryFromReader);
-      msg.setConnectionInfo(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
       break;
     default:
       reader.skipField();
@@ -943,9 +1647,9 @@ proto.mvcgi.ConnectDevicesRequest.ControllerConnection.deserializeBinaryFromRead
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.mvcgi.ConnectDevicesRequest.ControllerConnection.prototype.serializeBinary = function() {
+proto.mvcgi.DeviceInterfaceRequest.Options.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.mvcgi.ConnectDevicesRequest.ControllerConnection.serializeBinaryToWriter(this, writer);
+  proto.mvcgi.DeviceInterfaceRequest.Options.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -953,11 +1657,11 @@ proto.mvcgi.ConnectDevicesRequest.ControllerConnection.prototype.serializeBinary
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.mvcgi.ConnectDevicesRequest.ControllerConnection} message
+ * @param {!proto.mvcgi.DeviceInterfaceRequest.Options} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.mvcgi.ConnectDevicesRequest.ControllerConnection.serializeBinaryToWriter = function(message, writer) {
+proto.mvcgi.DeviceInterfaceRequest.Options.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getAction();
   if (f !== 0.0) {
@@ -966,12 +1670,11 @@ proto.mvcgi.ConnectDevicesRequest.ControllerConnection.serializeBinaryToWriter =
       f
     );
   }
-  f = message.getConnectionInfo();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getId();
+  if (f.length > 0) {
+    writer.writeString(
       2,
-      f,
-      camera_controller_definitions_pb.ConnectRequest.serializeBinaryToWriter
+      f
     );
   }
 };
@@ -981,251 +1684,50 @@ proto.mvcgi.ConnectDevicesRequest.ControllerConnection.serializeBinaryToWriter =
  * optional ConnectionAction action = 1;
  * @return {!proto.mvcgi.ConnectionAction}
  */
-proto.mvcgi.ConnectDevicesRequest.ControllerConnection.prototype.getAction = function() {
+proto.mvcgi.DeviceInterfaceRequest.Options.prototype.getAction = function() {
   return /** @type {!proto.mvcgi.ConnectionAction} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /** @param {!proto.mvcgi.ConnectionAction} value */
-proto.mvcgi.ConnectDevicesRequest.ControllerConnection.prototype.setAction = function(value) {
+proto.mvcgi.DeviceInterfaceRequest.Options.prototype.setAction = function(value) {
   jspb.Message.setProto3EnumField(this, 1, value);
 };
 
 
 /**
- * optional mvcamctrl.ConnectRequest connection_info = 2;
- * @return {?proto.mvcamctrl.ConnectRequest}
+ * optional string id = 2;
+ * @return {string}
  */
-proto.mvcgi.ConnectDevicesRequest.ControllerConnection.prototype.getConnectionInfo = function() {
-  return /** @type{?proto.mvcamctrl.ConnectRequest} */ (
-    jspb.Message.getWrapperField(this, camera_controller_definitions_pb.ConnectRequest, 2));
+proto.mvcgi.DeviceInterfaceRequest.Options.prototype.getId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
-/** @param {?proto.mvcamctrl.ConnectRequest|undefined} value */
-proto.mvcgi.ConnectDevicesRequest.ControllerConnection.prototype.setConnectionInfo = function(value) {
-  jspb.Message.setWrapperField(this, 2, value);
-};
-
-
-proto.mvcgi.ConnectDevicesRequest.ControllerConnection.prototype.clearConnectionInfo = function() {
-  this.setConnectionInfo(undefined);
+/** @param {string} value */
+proto.mvcgi.DeviceInterfaceRequest.Options.prototype.setId = function(value) {
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * Returns whether this field is set.
- * @return {!boolean}
+ * optional Options control_camera = 1;
+ * @return {?proto.mvcgi.DeviceInterfaceRequest.Options}
  */
-proto.mvcgi.ConnectDevicesRequest.ControllerConnection.prototype.hasConnectionInfo = function() {
-  return jspb.Message.getField(this, 2) != null;
+proto.mvcgi.DeviceInterfaceRequest.prototype.getControlCamera = function() {
+  return /** @type{?proto.mvcgi.DeviceInterfaceRequest.Options} */ (
+    jspb.Message.getWrapperField(this, proto.mvcgi.DeviceInterfaceRequest.Options, 1));
 };
 
 
-
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.mvcgi.ConnectDevicesRequest.CameraConnection = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.mvcgi.ConnectDevicesRequest.CameraConnection, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  proto.mvcgi.ConnectDevicesRequest.CameraConnection.displayName = 'proto.mvcgi.ConnectDevicesRequest.CameraConnection';
-}
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto suitable for use in Soy templates.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
- * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
- *     for transitional soy proto support: http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.mvcgi.ConnectDevicesRequest.CameraConnection.prototype.toObject = function(opt_includeInstance) {
-  return proto.mvcgi.ConnectDevicesRequest.CameraConnection.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Whether to include the JSPB
- *     instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.mvcgi.ConnectDevicesRequest.CameraConnection} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.mvcgi.ConnectDevicesRequest.CameraConnection.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    action: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    connectionInfo: (f = msg.getConnectionInfo()) && camera_definitions_pb.IdRequest.toObject(includeInstance, f)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.mvcgi.ConnectDevicesRequest.CameraConnection}
- */
-proto.mvcgi.ConnectDevicesRequest.CameraConnection.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.mvcgi.ConnectDevicesRequest.CameraConnection;
-  return proto.mvcgi.ConnectDevicesRequest.CameraConnection.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.mvcgi.ConnectDevicesRequest.CameraConnection} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.mvcgi.ConnectDevicesRequest.CameraConnection}
- */
-proto.mvcgi.ConnectDevicesRequest.CameraConnection.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {!proto.mvcgi.ConnectionAction} */ (reader.readEnum());
-      msg.setAction(value);
-      break;
-    case 2:
-      var value = new camera_definitions_pb.IdRequest;
-      reader.readMessage(value,camera_definitions_pb.IdRequest.deserializeBinaryFromReader);
-      msg.setConnectionInfo(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.mvcgi.ConnectDevicesRequest.CameraConnection.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.mvcgi.ConnectDevicesRequest.CameraConnection.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.mvcgi.ConnectDevicesRequest.CameraConnection} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.mvcgi.ConnectDevicesRequest.CameraConnection.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getAction();
-  if (f !== 0.0) {
-    writer.writeEnum(
-      1,
-      f
-    );
-  }
-  f = message.getConnectionInfo();
-  if (f != null) {
-    writer.writeMessage(
-      2,
-      f,
-      camera_definitions_pb.IdRequest.serializeBinaryToWriter
-    );
-  }
-};
-
-
-/**
- * optional ConnectionAction action = 1;
- * @return {!proto.mvcgi.ConnectionAction}
- */
-proto.mvcgi.ConnectDevicesRequest.CameraConnection.prototype.getAction = function() {
-  return /** @type {!proto.mvcgi.ConnectionAction} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/** @param {!proto.mvcgi.ConnectionAction} value */
-proto.mvcgi.ConnectDevicesRequest.CameraConnection.prototype.setAction = function(value) {
-  jspb.Message.setProto3EnumField(this, 1, value);
-};
-
-
-/**
- * optional mvcam.IdRequest connection_info = 2;
- * @return {?proto.mvcam.IdRequest}
- */
-proto.mvcgi.ConnectDevicesRequest.CameraConnection.prototype.getConnectionInfo = function() {
-  return /** @type{?proto.mvcam.IdRequest} */ (
-    jspb.Message.getWrapperField(this, camera_definitions_pb.IdRequest, 2));
-};
-
-
-/** @param {?proto.mvcam.IdRequest|undefined} value */
-proto.mvcgi.ConnectDevicesRequest.CameraConnection.prototype.setConnectionInfo = function(value) {
-  jspb.Message.setWrapperField(this, 2, value);
-};
-
-
-proto.mvcgi.ConnectDevicesRequest.CameraConnection.prototype.clearConnectionInfo = function() {
-  this.setConnectionInfo(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.mvcgi.ConnectDevicesRequest.CameraConnection.prototype.hasConnectionInfo = function() {
-  return jspb.Message.getField(this, 2) != null;
-};
-
-
-/**
- * optional ControllerConnection controller_connection = 1;
- * @return {?proto.mvcgi.ConnectDevicesRequest.ControllerConnection}
- */
-proto.mvcgi.ConnectDevicesRequest.prototype.getControllerConnection = function() {
-  return /** @type{?proto.mvcgi.ConnectDevicesRequest.ControllerConnection} */ (
-    jspb.Message.getWrapperField(this, proto.mvcgi.ConnectDevicesRequest.ControllerConnection, 1));
-};
-
-
-/** @param {?proto.mvcgi.ConnectDevicesRequest.ControllerConnection|undefined} value */
-proto.mvcgi.ConnectDevicesRequest.prototype.setControllerConnection = function(value) {
+/** @param {?proto.mvcgi.DeviceInterfaceRequest.Options|undefined} value */
+proto.mvcgi.DeviceInterfaceRequest.prototype.setControlCamera = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
 
 
-proto.mvcgi.ConnectDevicesRequest.prototype.clearControllerConnection = function() {
-  this.setControllerConnection(undefined);
+proto.mvcgi.DeviceInterfaceRequest.prototype.clearControlCamera = function() {
+  this.setControlCamera(undefined);
 };
 
 
@@ -1233,29 +1735,29 @@ proto.mvcgi.ConnectDevicesRequest.prototype.clearControllerConnection = function
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.mvcgi.ConnectDevicesRequest.prototype.hasControllerConnection = function() {
+proto.mvcgi.DeviceInterfaceRequest.prototype.hasControlCamera = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
- * optional CameraConnection camera_connection = 2;
- * @return {?proto.mvcgi.ConnectDevicesRequest.CameraConnection}
+ * optional Options control_controller = 2;
+ * @return {?proto.mvcgi.DeviceInterfaceRequest.Options}
  */
-proto.mvcgi.ConnectDevicesRequest.prototype.getCameraConnection = function() {
-  return /** @type{?proto.mvcgi.ConnectDevicesRequest.CameraConnection} */ (
-    jspb.Message.getWrapperField(this, proto.mvcgi.ConnectDevicesRequest.CameraConnection, 2));
+proto.mvcgi.DeviceInterfaceRequest.prototype.getControlController = function() {
+  return /** @type{?proto.mvcgi.DeviceInterfaceRequest.Options} */ (
+    jspb.Message.getWrapperField(this, proto.mvcgi.DeviceInterfaceRequest.Options, 2));
 };
 
 
-/** @param {?proto.mvcgi.ConnectDevicesRequest.CameraConnection|undefined} value */
-proto.mvcgi.ConnectDevicesRequest.prototype.setCameraConnection = function(value) {
+/** @param {?proto.mvcgi.DeviceInterfaceRequest.Options|undefined} value */
+proto.mvcgi.DeviceInterfaceRequest.prototype.setControlController = function(value) {
   jspb.Message.setWrapperField(this, 2, value);
 };
 
 
-proto.mvcgi.ConnectDevicesRequest.prototype.clearCameraConnection = function() {
-  this.setCameraConnection(undefined);
+proto.mvcgi.DeviceInterfaceRequest.prototype.clearControlController = function() {
+  this.setControlController(undefined);
 };
 
 
@@ -1263,7 +1765,7 @@ proto.mvcgi.ConnectDevicesRequest.prototype.clearCameraConnection = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.mvcgi.ConnectDevicesRequest.prototype.hasCameraConnection = function() {
+proto.mvcgi.DeviceInterfaceRequest.prototype.hasControlController = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -1279,12 +1781,12 @@ proto.mvcgi.ConnectDevicesRequest.prototype.hasCameraConnection = function() {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.mvcgi.ConnectDevicesResponse = function(opt_data) {
+proto.mvcgi.DeviceInterfaceResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.mvcgi.ConnectDevicesResponse, jspb.Message);
+goog.inherits(proto.mvcgi.DeviceInterfaceResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.mvcgi.ConnectDevicesResponse.displayName = 'proto.mvcgi.ConnectDevicesResponse';
+  proto.mvcgi.DeviceInterfaceResponse.displayName = 'proto.mvcgi.DeviceInterfaceResponse';
 }
 
 
@@ -1299,8 +1801,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     for transitional soy proto support: http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.mvcgi.ConnectDevicesResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.mvcgi.ConnectDevicesResponse.toObject(opt_includeInstance, this);
+proto.mvcgi.DeviceInterfaceResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.mvcgi.DeviceInterfaceResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -1309,13 +1811,14 @@ proto.mvcgi.ConnectDevicesResponse.prototype.toObject = function(opt_includeInst
  * @param {boolean|undefined} includeInstance Whether to include the JSPB
  *     instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.mvcgi.ConnectDevicesResponse} msg The msg instance to transform.
+ * @param {!proto.mvcgi.DeviceInterfaceResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.mvcgi.ConnectDevicesResponse.toObject = function(includeInstance, msg) {
+proto.mvcgi.DeviceInterfaceResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-
+    affectedCamera: (f = msg.getAffectedCamera()) && proto.mvcgi.DeviceInterfaceResponse.AffectedDevice.toObject(includeInstance, f),
+    affectedController: (f = msg.getAffectedController()) && proto.mvcgi.DeviceInterfaceResponse.AffectedDevice.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1329,29 +1832,39 @@ proto.mvcgi.ConnectDevicesResponse.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.mvcgi.ConnectDevicesResponse}
+ * @return {!proto.mvcgi.DeviceInterfaceResponse}
  */
-proto.mvcgi.ConnectDevicesResponse.deserializeBinary = function(bytes) {
+proto.mvcgi.DeviceInterfaceResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.mvcgi.ConnectDevicesResponse;
-  return proto.mvcgi.ConnectDevicesResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.mvcgi.DeviceInterfaceResponse;
+  return proto.mvcgi.DeviceInterfaceResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.mvcgi.ConnectDevicesResponse} msg The message object to deserialize into.
+ * @param {!proto.mvcgi.DeviceInterfaceResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.mvcgi.ConnectDevicesResponse}
+ * @return {!proto.mvcgi.DeviceInterfaceResponse}
  */
-proto.mvcgi.ConnectDevicesResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.mvcgi.DeviceInterfaceResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = new proto.mvcgi.DeviceInterfaceResponse.AffectedDevice;
+      reader.readMessage(value,proto.mvcgi.DeviceInterfaceResponse.AffectedDevice.deserializeBinaryFromReader);
+      msg.setAffectedCamera(value);
+      break;
+    case 2:
+      var value = new proto.mvcgi.DeviceInterfaceResponse.AffectedDevice;
+      reader.readMessage(value,proto.mvcgi.DeviceInterfaceResponse.AffectedDevice.deserializeBinaryFromReader);
+      msg.setAffectedController(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1365,9 +1878,9 @@ proto.mvcgi.ConnectDevicesResponse.deserializeBinaryFromReader = function(msg, r
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.mvcgi.ConnectDevicesResponse.prototype.serializeBinary = function() {
+proto.mvcgi.DeviceInterfaceResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.mvcgi.ConnectDevicesResponse.serializeBinaryToWriter(this, writer);
+  proto.mvcgi.DeviceInterfaceResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -1375,14 +1888,2339 @@ proto.mvcgi.ConnectDevicesResponse.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.mvcgi.ConnectDevicesResponse} message
+ * @param {!proto.mvcgi.DeviceInterfaceResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.mvcgi.ConnectDevicesResponse.serializeBinaryToWriter = function(message, writer) {
+proto.mvcgi.DeviceInterfaceResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getAffectedCamera();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      proto.mvcgi.DeviceInterfaceResponse.AffectedDevice.serializeBinaryToWriter
+    );
+  }
+  f = message.getAffectedController();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      proto.mvcgi.DeviceInterfaceResponse.AffectedDevice.serializeBinaryToWriter
+    );
+  }
 };
 
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.mvcgi.DeviceInterfaceResponse.AffectedDevice = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.mvcgi.DeviceInterfaceResponse.AffectedDevice, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.mvcgi.DeviceInterfaceResponse.AffectedDevice.displayName = 'proto.mvcgi.DeviceInterfaceResponse.AffectedDevice';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.mvcgi.DeviceInterfaceResponse.AffectedDevice.prototype.toObject = function(opt_includeInstance) {
+  return proto.mvcgi.DeviceInterfaceResponse.AffectedDevice.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.mvcgi.DeviceInterfaceResponse.AffectedDevice} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.mvcgi.DeviceInterfaceResponse.AffectedDevice.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    status: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    id: jspb.Message.getFieldWithDefault(msg, 2, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.mvcgi.DeviceInterfaceResponse.AffectedDevice}
+ */
+proto.mvcgi.DeviceInterfaceResponse.AffectedDevice.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.mvcgi.DeviceInterfaceResponse.AffectedDevice;
+  return proto.mvcgi.DeviceInterfaceResponse.AffectedDevice.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.mvcgi.DeviceInterfaceResponse.AffectedDevice} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.mvcgi.DeviceInterfaceResponse.AffectedDevice}
+ */
+proto.mvcgi.DeviceInterfaceResponse.AffectedDevice.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {!proto.mvcgi.ConnectionStatus} */ (reader.readEnum());
+      msg.setStatus(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.mvcgi.DeviceInterfaceResponse.AffectedDevice.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.mvcgi.DeviceInterfaceResponse.AffectedDevice.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.mvcgi.DeviceInterfaceResponse.AffectedDevice} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.mvcgi.DeviceInterfaceResponse.AffectedDevice.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getStatus();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      1,
+      f
+    );
+  }
+  f = message.getId();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional ConnectionStatus status = 1;
+ * @return {!proto.mvcgi.ConnectionStatus}
+ */
+proto.mvcgi.DeviceInterfaceResponse.AffectedDevice.prototype.getStatus = function() {
+  return /** @type {!proto.mvcgi.ConnectionStatus} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/** @param {!proto.mvcgi.ConnectionStatus} value */
+proto.mvcgi.DeviceInterfaceResponse.AffectedDevice.prototype.setStatus = function(value) {
+  jspb.Message.setProto3EnumField(this, 1, value);
+};
+
+
+/**
+ * optional string id = 2;
+ * @return {string}
+ */
+proto.mvcgi.DeviceInterfaceResponse.AffectedDevice.prototype.getId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/** @param {string} value */
+proto.mvcgi.DeviceInterfaceResponse.AffectedDevice.prototype.setId = function(value) {
+  jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional AffectedDevice affected_camera = 1;
+ * @return {?proto.mvcgi.DeviceInterfaceResponse.AffectedDevice}
+ */
+proto.mvcgi.DeviceInterfaceResponse.prototype.getAffectedCamera = function() {
+  return /** @type{?proto.mvcgi.DeviceInterfaceResponse.AffectedDevice} */ (
+    jspb.Message.getWrapperField(this, proto.mvcgi.DeviceInterfaceResponse.AffectedDevice, 1));
+};
+
+
+/** @param {?proto.mvcgi.DeviceInterfaceResponse.AffectedDevice|undefined} value */
+proto.mvcgi.DeviceInterfaceResponse.prototype.setAffectedCamera = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.mvcgi.DeviceInterfaceResponse.prototype.clearAffectedCamera = function() {
+  this.setAffectedCamera(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.mvcgi.DeviceInterfaceResponse.prototype.hasAffectedCamera = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional AffectedDevice affected_controller = 2;
+ * @return {?proto.mvcgi.DeviceInterfaceResponse.AffectedDevice}
+ */
+proto.mvcgi.DeviceInterfaceResponse.prototype.getAffectedController = function() {
+  return /** @type{?proto.mvcgi.DeviceInterfaceResponse.AffectedDevice} */ (
+    jspb.Message.getWrapperField(this, proto.mvcgi.DeviceInterfaceResponse.AffectedDevice, 2));
+};
+
+
+/** @param {?proto.mvcgi.DeviceInterfaceResponse.AffectedDevice|undefined} value */
+proto.mvcgi.DeviceInterfaceResponse.prototype.setAffectedController = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.mvcgi.DeviceInterfaceResponse.prototype.clearAffectedController = function() {
+  this.setAffectedController(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.mvcgi.DeviceInterfaceResponse.prototype.hasAffectedController = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.mvcgi.DeviceParameterInterfaceRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.mvcgi.DeviceParameterInterfaceRequest.displayName = 'proto.mvcgi.DeviceParameterInterfaceRequest';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.mvcgi.DeviceParameterInterfaceRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.mvcgi.DeviceParameterInterfaceRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    controller: (f = msg.getController()) && proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters.toObject(includeInstance, f),
+    camera: (f = msg.getCamera()) && proto.mvcgi.DeviceParameterInterfaceRequest.CameraParameters.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.mvcgi.DeviceParameterInterfaceRequest}
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.mvcgi.DeviceParameterInterfaceRequest;
+  return proto.mvcgi.DeviceParameterInterfaceRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.mvcgi.DeviceParameterInterfaceRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.mvcgi.DeviceParameterInterfaceRequest}
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters;
+      reader.readMessage(value,proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters.deserializeBinaryFromReader);
+      msg.setController(value);
+      break;
+    case 2:
+      var value = new proto.mvcgi.DeviceParameterInterfaceRequest.CameraParameters;
+      reader.readMessage(value,proto.mvcgi.DeviceParameterInterfaceRequest.CameraParameters.deserializeBinaryFromReader);
+      msg.setCamera(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.mvcgi.DeviceParameterInterfaceRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.mvcgi.DeviceParameterInterfaceRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getController();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters.serializeBinaryToWriter
+    );
+  }
+  f = message.getCamera();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      proto.mvcgi.DeviceParameterInterfaceRequest.CameraParameters.serializeBinaryToWriter
+    );
+  }
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters.displayName = 'proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters.prototype.toObject = function(opt_includeInstance) {
+  return proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    laser: (f = msg.getLaser()) && camera_controller_definitions_pb.LaserConfiguration.toObject(includeInstance, f),
+    power: (f = msg.getPower()) && camera_controller_definitions_pb.PowerConfiguration.toObject(includeInstance, f),
+    enable: (f = msg.getEnable()) && camera_controller_definitions_pb.ControlLaserRequest.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters}
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters;
+  return proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters}
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
+      break;
+    case 2:
+      var value = new camera_controller_definitions_pb.LaserConfiguration;
+      reader.readMessage(value,camera_controller_definitions_pb.LaserConfiguration.deserializeBinaryFromReader);
+      msg.setLaser(value);
+      break;
+    case 3:
+      var value = new camera_controller_definitions_pb.PowerConfiguration;
+      reader.readMessage(value,camera_controller_definitions_pb.PowerConfiguration.deserializeBinaryFromReader);
+      msg.setPower(value);
+      break;
+    case 4:
+      var value = new camera_controller_definitions_pb.ControlLaserRequest;
+      reader.readMessage(value,camera_controller_definitions_pb.ControlLaserRequest.deserializeBinaryFromReader);
+      msg.setEnable(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getLaser();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      camera_controller_definitions_pb.LaserConfiguration.serializeBinaryToWriter
+    );
+  }
+  f = message.getPower();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      camera_controller_definitions_pb.PowerConfiguration.serializeBinaryToWriter
+    );
+  }
+  f = message.getEnable();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      camera_controller_definitions_pb.ControlLaserRequest.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional string id = 1;
+ * @return {string}
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters.prototype.getId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters.prototype.setId = function(value) {
+  jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional mvcamctrl.LaserConfiguration laser = 2;
+ * @return {?proto.mvcamctrl.LaserConfiguration}
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters.prototype.getLaser = function() {
+  return /** @type{?proto.mvcamctrl.LaserConfiguration} */ (
+    jspb.Message.getWrapperField(this, camera_controller_definitions_pb.LaserConfiguration, 2));
+};
+
+
+/** @param {?proto.mvcamctrl.LaserConfiguration|undefined} value */
+proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters.prototype.setLaser = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters.prototype.clearLaser = function() {
+  this.setLaser(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters.prototype.hasLaser = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional mvcamctrl.PowerConfiguration power = 3;
+ * @return {?proto.mvcamctrl.PowerConfiguration}
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters.prototype.getPower = function() {
+  return /** @type{?proto.mvcamctrl.PowerConfiguration} */ (
+    jspb.Message.getWrapperField(this, camera_controller_definitions_pb.PowerConfiguration, 3));
+};
+
+
+/** @param {?proto.mvcamctrl.PowerConfiguration|undefined} value */
+proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters.prototype.setPower = function(value) {
+  jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters.prototype.clearPower = function() {
+  this.setPower(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters.prototype.hasPower = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional mvcamctrl.ControlLaserRequest enable = 4;
+ * @return {?proto.mvcamctrl.ControlLaserRequest}
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters.prototype.getEnable = function() {
+  return /** @type{?proto.mvcamctrl.ControlLaserRequest} */ (
+    jspb.Message.getWrapperField(this, camera_controller_definitions_pb.ControlLaserRequest, 4));
+};
+
+
+/** @param {?proto.mvcamctrl.ControlLaserRequest|undefined} value */
+proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters.prototype.setEnable = function(value) {
+  jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters.prototype.clearEnable = function() {
+  this.setEnable(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters.prototype.hasEnable = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest.CameraParameters = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.mvcgi.DeviceParameterInterfaceRequest.CameraParameters, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.mvcgi.DeviceParameterInterfaceRequest.CameraParameters.displayName = 'proto.mvcgi.DeviceParameterInterfaceRequest.CameraParameters';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest.CameraParameters.prototype.toObject = function(opt_includeInstance) {
+  return proto.mvcgi.DeviceParameterInterfaceRequest.CameraParameters.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.mvcgi.DeviceParameterInterfaceRequest.CameraParameters} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest.CameraParameters.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    config: (f = msg.getConfig()) && camera_definitions_pb.Configuration.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.mvcgi.DeviceParameterInterfaceRequest.CameraParameters}
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest.CameraParameters.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.mvcgi.DeviceParameterInterfaceRequest.CameraParameters;
+  return proto.mvcgi.DeviceParameterInterfaceRequest.CameraParameters.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.mvcgi.DeviceParameterInterfaceRequest.CameraParameters} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.mvcgi.DeviceParameterInterfaceRequest.CameraParameters}
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest.CameraParameters.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
+      break;
+    case 2:
+      var value = new camera_definitions_pb.Configuration;
+      reader.readMessage(value,camera_definitions_pb.Configuration.deserializeBinaryFromReader);
+      msg.setConfig(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest.CameraParameters.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.mvcgi.DeviceParameterInterfaceRequest.CameraParameters.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.mvcgi.DeviceParameterInterfaceRequest.CameraParameters} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest.CameraParameters.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getConfig();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      camera_definitions_pb.Configuration.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional string id = 1;
+ * @return {string}
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest.CameraParameters.prototype.getId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.mvcgi.DeviceParameterInterfaceRequest.CameraParameters.prototype.setId = function(value) {
+  jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional mvcam.Configuration config = 2;
+ * @return {?proto.mvcam.Configuration}
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest.CameraParameters.prototype.getConfig = function() {
+  return /** @type{?proto.mvcam.Configuration} */ (
+    jspb.Message.getWrapperField(this, camera_definitions_pb.Configuration, 2));
+};
+
+
+/** @param {?proto.mvcam.Configuration|undefined} value */
+proto.mvcgi.DeviceParameterInterfaceRequest.CameraParameters.prototype.setConfig = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.mvcgi.DeviceParameterInterfaceRequest.CameraParameters.prototype.clearConfig = function() {
+  this.setConfig(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest.CameraParameters.prototype.hasConfig = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional ControllerParameters controller = 1;
+ * @return {?proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters}
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest.prototype.getController = function() {
+  return /** @type{?proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters} */ (
+    jspb.Message.getWrapperField(this, proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters, 1));
+};
+
+
+/** @param {?proto.mvcgi.DeviceParameterInterfaceRequest.ControllerParameters|undefined} value */
+proto.mvcgi.DeviceParameterInterfaceRequest.prototype.setController = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.mvcgi.DeviceParameterInterfaceRequest.prototype.clearController = function() {
+  this.setController(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest.prototype.hasController = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional CameraParameters camera = 2;
+ * @return {?proto.mvcgi.DeviceParameterInterfaceRequest.CameraParameters}
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest.prototype.getCamera = function() {
+  return /** @type{?proto.mvcgi.DeviceParameterInterfaceRequest.CameraParameters} */ (
+    jspb.Message.getWrapperField(this, proto.mvcgi.DeviceParameterInterfaceRequest.CameraParameters, 2));
+};
+
+
+/** @param {?proto.mvcgi.DeviceParameterInterfaceRequest.CameraParameters|undefined} value */
+proto.mvcgi.DeviceParameterInterfaceRequest.prototype.setCamera = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.mvcgi.DeviceParameterInterfaceRequest.prototype.clearCamera = function() {
+  this.setCamera(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.mvcgi.DeviceParameterInterfaceRequest.prototype.hasCamera = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.mvcgi.DeviceParameterInterfaceResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.mvcgi.DeviceParameterInterfaceResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.mvcgi.DeviceParameterInterfaceResponse.displayName = 'proto.mvcgi.DeviceParameterInterfaceResponse';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.mvcgi.DeviceParameterInterfaceResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.mvcgi.DeviceParameterInterfaceResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.mvcgi.DeviceParameterInterfaceResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.mvcgi.DeviceParameterInterfaceResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    controller: (f = msg.getController()) && proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters.toObject(includeInstance, f),
+    camera: (f = msg.getCamera()) && proto.mvcgi.DeviceParameterInterfaceResponse.CameraParameters.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.mvcgi.DeviceParameterInterfaceResponse}
+ */
+proto.mvcgi.DeviceParameterInterfaceResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.mvcgi.DeviceParameterInterfaceResponse;
+  return proto.mvcgi.DeviceParameterInterfaceResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.mvcgi.DeviceParameterInterfaceResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.mvcgi.DeviceParameterInterfaceResponse}
+ */
+proto.mvcgi.DeviceParameterInterfaceResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters;
+      reader.readMessage(value,proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters.deserializeBinaryFromReader);
+      msg.setController(value);
+      break;
+    case 2:
+      var value = new proto.mvcgi.DeviceParameterInterfaceResponse.CameraParameters;
+      reader.readMessage(value,proto.mvcgi.DeviceParameterInterfaceResponse.CameraParameters.deserializeBinaryFromReader);
+      msg.setCamera(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.mvcgi.DeviceParameterInterfaceResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.mvcgi.DeviceParameterInterfaceResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.mvcgi.DeviceParameterInterfaceResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.mvcgi.DeviceParameterInterfaceResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getController();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters.serializeBinaryToWriter
+    );
+  }
+  f = message.getCamera();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      proto.mvcgi.DeviceParameterInterfaceResponse.CameraParameters.serializeBinaryToWriter
+    );
+  }
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters.displayName = 'proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters.prototype.toObject = function(opt_includeInstance) {
+  return proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    laser: (f = msg.getLaser()) && camera_controller_definitions_pb.LaserConfiguration.toObject(includeInstance, f),
+    power: (f = msg.getPower()) && camera_controller_definitions_pb.PowerConfiguration.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters}
+ */
+proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters;
+  return proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters}
+ */
+proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new camera_controller_definitions_pb.LaserConfiguration;
+      reader.readMessage(value,camera_controller_definitions_pb.LaserConfiguration.deserializeBinaryFromReader);
+      msg.setLaser(value);
+      break;
+    case 2:
+      var value = new camera_controller_definitions_pb.PowerConfiguration;
+      reader.readMessage(value,camera_controller_definitions_pb.PowerConfiguration.deserializeBinaryFromReader);
+      msg.setPower(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getLaser();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      camera_controller_definitions_pb.LaserConfiguration.serializeBinaryToWriter
+    );
+  }
+  f = message.getPower();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      camera_controller_definitions_pb.PowerConfiguration.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional mvcamctrl.LaserConfiguration laser = 1;
+ * @return {?proto.mvcamctrl.LaserConfiguration}
+ */
+proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters.prototype.getLaser = function() {
+  return /** @type{?proto.mvcamctrl.LaserConfiguration} */ (
+    jspb.Message.getWrapperField(this, camera_controller_definitions_pb.LaserConfiguration, 1));
+};
+
+
+/** @param {?proto.mvcamctrl.LaserConfiguration|undefined} value */
+proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters.prototype.setLaser = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters.prototype.clearLaser = function() {
+  this.setLaser(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters.prototype.hasLaser = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional mvcamctrl.PowerConfiguration power = 2;
+ * @return {?proto.mvcamctrl.PowerConfiguration}
+ */
+proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters.prototype.getPower = function() {
+  return /** @type{?proto.mvcamctrl.PowerConfiguration} */ (
+    jspb.Message.getWrapperField(this, camera_controller_definitions_pb.PowerConfiguration, 2));
+};
+
+
+/** @param {?proto.mvcamctrl.PowerConfiguration|undefined} value */
+proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters.prototype.setPower = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters.prototype.clearPower = function() {
+  this.setPower(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters.prototype.hasPower = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.mvcgi.DeviceParameterInterfaceResponse.CameraParameters = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.mvcgi.DeviceParameterInterfaceResponse.CameraParameters, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.mvcgi.DeviceParameterInterfaceResponse.CameraParameters.displayName = 'proto.mvcgi.DeviceParameterInterfaceResponse.CameraParameters';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.mvcgi.DeviceParameterInterfaceResponse.CameraParameters.prototype.toObject = function(opt_includeInstance) {
+  return proto.mvcgi.DeviceParameterInterfaceResponse.CameraParameters.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.mvcgi.DeviceParameterInterfaceResponse.CameraParameters} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.mvcgi.DeviceParameterInterfaceResponse.CameraParameters.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    config: (f = msg.getConfig()) && camera_definitions_pb.Configuration.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.mvcgi.DeviceParameterInterfaceResponse.CameraParameters}
+ */
+proto.mvcgi.DeviceParameterInterfaceResponse.CameraParameters.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.mvcgi.DeviceParameterInterfaceResponse.CameraParameters;
+  return proto.mvcgi.DeviceParameterInterfaceResponse.CameraParameters.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.mvcgi.DeviceParameterInterfaceResponse.CameraParameters} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.mvcgi.DeviceParameterInterfaceResponse.CameraParameters}
+ */
+proto.mvcgi.DeviceParameterInterfaceResponse.CameraParameters.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new camera_definitions_pb.Configuration;
+      reader.readMessage(value,camera_definitions_pb.Configuration.deserializeBinaryFromReader);
+      msg.setConfig(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.mvcgi.DeviceParameterInterfaceResponse.CameraParameters.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.mvcgi.DeviceParameterInterfaceResponse.CameraParameters.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.mvcgi.DeviceParameterInterfaceResponse.CameraParameters} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.mvcgi.DeviceParameterInterfaceResponse.CameraParameters.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getConfig();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      camera_definitions_pb.Configuration.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional mvcam.Configuration config = 1;
+ * @return {?proto.mvcam.Configuration}
+ */
+proto.mvcgi.DeviceParameterInterfaceResponse.CameraParameters.prototype.getConfig = function() {
+  return /** @type{?proto.mvcam.Configuration} */ (
+    jspb.Message.getWrapperField(this, camera_definitions_pb.Configuration, 1));
+};
+
+
+/** @param {?proto.mvcam.Configuration|undefined} value */
+proto.mvcgi.DeviceParameterInterfaceResponse.CameraParameters.prototype.setConfig = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.mvcgi.DeviceParameterInterfaceResponse.CameraParameters.prototype.clearConfig = function() {
+  this.setConfig(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.mvcgi.DeviceParameterInterfaceResponse.CameraParameters.prototype.hasConfig = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional ControllerParameters controller = 1;
+ * @return {?proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters}
+ */
+proto.mvcgi.DeviceParameterInterfaceResponse.prototype.getController = function() {
+  return /** @type{?proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters} */ (
+    jspb.Message.getWrapperField(this, proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters, 1));
+};
+
+
+/** @param {?proto.mvcgi.DeviceParameterInterfaceResponse.ControllerParameters|undefined} value */
+proto.mvcgi.DeviceParameterInterfaceResponse.prototype.setController = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.mvcgi.DeviceParameterInterfaceResponse.prototype.clearController = function() {
+  this.setController(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.mvcgi.DeviceParameterInterfaceResponse.prototype.hasController = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional CameraParameters camera = 2;
+ * @return {?proto.mvcgi.DeviceParameterInterfaceResponse.CameraParameters}
+ */
+proto.mvcgi.DeviceParameterInterfaceResponse.prototype.getCamera = function() {
+  return /** @type{?proto.mvcgi.DeviceParameterInterfaceResponse.CameraParameters} */ (
+    jspb.Message.getWrapperField(this, proto.mvcgi.DeviceParameterInterfaceResponse.CameraParameters, 2));
+};
+
+
+/** @param {?proto.mvcgi.DeviceParameterInterfaceResponse.CameraParameters|undefined} value */
+proto.mvcgi.DeviceParameterInterfaceResponse.prototype.setCamera = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.mvcgi.DeviceParameterInterfaceResponse.prototype.clearCamera = function() {
+  this.setCamera(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.mvcgi.DeviceParameterInterfaceResponse.prototype.hasCamera = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.mvcgi.CameraStreamingRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.mvcgi.CameraStreamingRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.mvcgi.CameraStreamingRequest.displayName = 'proto.mvcgi.CameraStreamingRequest';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.mvcgi.CameraStreamingRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.mvcgi.CameraStreamingRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.mvcgi.CameraStreamingRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.mvcgi.CameraStreamingRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    request: (f = msg.getRequest()) && camera_definitions_pb.StreamingRequest.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.mvcgi.CameraStreamingRequest}
+ */
+proto.mvcgi.CameraStreamingRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.mvcgi.CameraStreamingRequest;
+  return proto.mvcgi.CameraStreamingRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.mvcgi.CameraStreamingRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.mvcgi.CameraStreamingRequest}
+ */
+proto.mvcgi.CameraStreamingRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new camera_definitions_pb.StreamingRequest;
+      reader.readMessage(value,camera_definitions_pb.StreamingRequest.deserializeBinaryFromReader);
+      msg.setRequest(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.mvcgi.CameraStreamingRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.mvcgi.CameraStreamingRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.mvcgi.CameraStreamingRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.mvcgi.CameraStreamingRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getRequest();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      camera_definitions_pb.StreamingRequest.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional mvcam.StreamingRequest request = 1;
+ * @return {?proto.mvcam.StreamingRequest}
+ */
+proto.mvcgi.CameraStreamingRequest.prototype.getRequest = function() {
+  return /** @type{?proto.mvcam.StreamingRequest} */ (
+    jspb.Message.getWrapperField(this, camera_definitions_pb.StreamingRequest, 1));
+};
+
+
+/** @param {?proto.mvcam.StreamingRequest|undefined} value */
+proto.mvcgi.CameraStreamingRequest.prototype.setRequest = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.mvcgi.CameraStreamingRequest.prototype.clearRequest = function() {
+  this.setRequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.mvcgi.CameraStreamingRequest.prototype.hasRequest = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.mvcgi.CameraStream = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.mvcgi.CameraStream, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.mvcgi.CameraStream.displayName = 'proto.mvcgi.CameraStream';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.mvcgi.CameraStream.prototype.toObject = function(opt_includeInstance) {
+  return proto.mvcgi.CameraStream.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.mvcgi.CameraStream} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.mvcgi.CameraStream.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    frameStream: (f = msg.getFrameStream()) && camera_definitions_pb.FrameStream.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.mvcgi.CameraStream}
+ */
+proto.mvcgi.CameraStream.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.mvcgi.CameraStream;
+  return proto.mvcgi.CameraStream.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.mvcgi.CameraStream} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.mvcgi.CameraStream}
+ */
+proto.mvcgi.CameraStream.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new camera_definitions_pb.FrameStream;
+      reader.readMessage(value,camera_definitions_pb.FrameStream.deserializeBinaryFromReader);
+      msg.setFrameStream(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.mvcgi.CameraStream.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.mvcgi.CameraStream.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.mvcgi.CameraStream} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.mvcgi.CameraStream.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getFrameStream();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      camera_definitions_pb.FrameStream.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional mvcam.FrameStream frame_stream = 1;
+ * @return {?proto.mvcam.FrameStream}
+ */
+proto.mvcgi.CameraStream.prototype.getFrameStream = function() {
+  return /** @type{?proto.mvcam.FrameStream} */ (
+    jspb.Message.getWrapperField(this, camera_definitions_pb.FrameStream, 1));
+};
+
+
+/** @param {?proto.mvcam.FrameStream|undefined} value */
+proto.mvcgi.CameraStream.prototype.setFrameStream = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.mvcgi.CameraStream.prototype.clearFrameStream = function() {
+  this.setFrameStream(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.mvcgi.CameraStream.prototype.hasFrameStream = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.mvcgi.CameraCapturingRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.mvcgi.CameraCapturingRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.mvcgi.CameraCapturingRequest.displayName = 'proto.mvcgi.CameraCapturingRequest';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.mvcgi.CameraCapturingRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.mvcgi.CameraCapturingRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.mvcgi.CameraCapturingRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.mvcgi.CameraCapturingRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.mvcgi.CameraCapturingRequest}
+ */
+proto.mvcgi.CameraCapturingRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.mvcgi.CameraCapturingRequest;
+  return proto.mvcgi.CameraCapturingRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.mvcgi.CameraCapturingRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.mvcgi.CameraCapturingRequest}
+ */
+proto.mvcgi.CameraCapturingRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.mvcgi.CameraCapturingRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.mvcgi.CameraCapturingRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.mvcgi.CameraCapturingRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.mvcgi.CameraCapturingRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string id = 1;
+ * @return {string}
+ */
+proto.mvcgi.CameraCapturingRequest.prototype.getId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.mvcgi.CameraCapturingRequest.prototype.setId = function(value) {
+  jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.mvcgi.CameraCapturingResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.mvcgi.CameraCapturingResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.mvcgi.CameraCapturingResponse.displayName = 'proto.mvcgi.CameraCapturingResponse';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.mvcgi.CameraCapturingResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.mvcgi.CameraCapturingResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.mvcgi.CameraCapturingResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.mvcgi.CameraCapturingResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    frame: (f = msg.getFrame()) && camera_definitions_pb.Frame.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.mvcgi.CameraCapturingResponse}
+ */
+proto.mvcgi.CameraCapturingResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.mvcgi.CameraCapturingResponse;
+  return proto.mvcgi.CameraCapturingResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.mvcgi.CameraCapturingResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.mvcgi.CameraCapturingResponse}
+ */
+proto.mvcgi.CameraCapturingResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new camera_definitions_pb.Frame;
+      reader.readMessage(value,camera_definitions_pb.Frame.deserializeBinaryFromReader);
+      msg.setFrame(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.mvcgi.CameraCapturingResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.mvcgi.CameraCapturingResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.mvcgi.CameraCapturingResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.mvcgi.CameraCapturingResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getFrame();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      camera_definitions_pb.Frame.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional mvcam.Frame frame = 1;
+ * @return {?proto.mvcam.Frame}
+ */
+proto.mvcgi.CameraCapturingResponse.prototype.getFrame = function() {
+  return /** @type{?proto.mvcam.Frame} */ (
+    jspb.Message.getWrapperField(this, camera_definitions_pb.Frame, 1));
+};
+
+
+/** @param {?proto.mvcam.Frame|undefined} value */
+proto.mvcgi.CameraCapturingResponse.prototype.setFrame = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.mvcgi.CameraCapturingResponse.prototype.clearFrame = function() {
+  this.setFrame(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.mvcgi.CameraCapturingResponse.prototype.hasFrame = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.mvcgi.DevicePair = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.mvcgi.DevicePair, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.mvcgi.DevicePair.displayName = 'proto.mvcgi.DevicePair';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.mvcgi.DevicePair.prototype.toObject = function(opt_includeInstance) {
+  return proto.mvcgi.DevicePair.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.mvcgi.DevicePair} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.mvcgi.DevicePair.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    pairName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    controllerPath: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    cameraId: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    connected: jspb.Message.getFieldWithDefault(msg, 5, false)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.mvcgi.DevicePair}
+ */
+proto.mvcgi.DevicePair.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.mvcgi.DevicePair;
+  return proto.mvcgi.DevicePair.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.mvcgi.DevicePair} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.mvcgi.DevicePair}
+ */
+proto.mvcgi.DevicePair.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPairName(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setControllerPath(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCameraId(value);
+      break;
+    case 5:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setConnected(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.mvcgi.DevicePair.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.mvcgi.DevicePair.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.mvcgi.DevicePair} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.mvcgi.DevicePair.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getPairName();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getControllerPath();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getCameraId();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getConnected();
+  if (f) {
+    writer.writeBool(
+      5,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string pair_name = 1;
+ * @return {string}
+ */
+proto.mvcgi.DevicePair.prototype.getPairName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.mvcgi.DevicePair.prototype.setPairName = function(value) {
+  jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string controller_path = 2;
+ * @return {string}
+ */
+proto.mvcgi.DevicePair.prototype.getControllerPath = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/** @param {string} value */
+proto.mvcgi.DevicePair.prototype.setControllerPath = function(value) {
+  jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string camera_id = 3;
+ * @return {string}
+ */
+proto.mvcgi.DevicePair.prototype.getCameraId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/** @param {string} value */
+proto.mvcgi.DevicePair.prototype.setCameraId = function(value) {
+  jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional bool connected = 5;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.mvcgi.DevicePair.prototype.getConnected = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 5, false));
+};
+
+
+/** @param {boolean} value */
+proto.mvcgi.DevicePair.prototype.setConnected = function(value) {
+  jspb.Message.setProto3BooleanField(this, 5, value);
+};
+
+
+/**
+ * @enum {number}
+ */
+proto.mvcgi.ConnectionStatus = {
+  CONNECTED: 0,
+  DISCONNECTED: 1
+};
 
 /**
  * @enum {number}
@@ -1391,14 +4229,6 @@ proto.mvcgi.ConnectionAction = {
   NO_OP: 0,
   CONNECT: 1,
   DISCONNECT: 2
-};
-
-/**
- * @enum {number}
- */
-proto.mvcgi.ConnectionStatus = {
-  CONNECTED: 0,
-  DISCONNECTED: 1
 };
 
 goog.object.extend(exports, proto.mvcgi);

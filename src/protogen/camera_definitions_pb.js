@@ -14,7 +14,6 @@ var global = Function('return this')();
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 goog.exportSymbol('proto.mvcam.AdapterCapability', null, global);
 goog.exportSymbol('proto.mvcam.AdapterInfo', null, global);
-goog.exportSymbol('proto.mvcam.AdapterRequest', null, global);
 goog.exportSymbol('proto.mvcam.AvailableAdaptersResponse', null, global);
 goog.exportSymbol('proto.mvcam.CameraCapability', null, global);
 goog.exportSymbol('proto.mvcam.Configuration', null, global);
@@ -22,9 +21,10 @@ goog.exportSymbol('proto.mvcam.ConfigureRequest', null, global);
 goog.exportSymbol('proto.mvcam.DeviceControlAction', null, global);
 goog.exportSymbol('proto.mvcam.DeviceControlRequest', null, global);
 goog.exportSymbol('proto.mvcam.DeviceInfo', null, global);
-goog.exportSymbol('proto.mvcam.DeviceListResponse', null, global);
 goog.exportSymbol('proto.mvcam.Frame', null, global);
 goog.exportSymbol('proto.mvcam.FrameStream', null, global);
+goog.exportSymbol('proto.mvcam.GetDevicesRequest', null, global);
+goog.exportSymbol('proto.mvcam.GetDevicesResponse', null, global);
 goog.exportSymbol('proto.mvcam.IdRequest', null, global);
 goog.exportSymbol('proto.mvcam.Parameter', null, global);
 goog.exportSymbol('proto.mvcam.Status', null, global);
@@ -621,12 +621,12 @@ proto.mvcam.AvailableAdaptersResponse.prototype.clearAdaptersList = function() {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.mvcam.AdapterRequest = function(opt_data) {
+proto.mvcam.GetDevicesRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.mvcam.AdapterRequest, jspb.Message);
+goog.inherits(proto.mvcam.GetDevicesRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.mvcam.AdapterRequest.displayName = 'proto.mvcam.AdapterRequest';
+  proto.mvcam.GetDevicesRequest.displayName = 'proto.mvcam.GetDevicesRequest';
 }
 
 
@@ -641,8 +641,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     for transitional soy proto support: http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.mvcam.AdapterRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.mvcam.AdapterRequest.toObject(opt_includeInstance, this);
+proto.mvcam.GetDevicesRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.mvcam.GetDevicesRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -651,13 +651,14 @@ proto.mvcam.AdapterRequest.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Whether to include the JSPB
  *     instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.mvcam.AdapterRequest} msg The msg instance to transform.
+ * @param {!proto.mvcam.GetDevicesRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.mvcam.AdapterRequest.toObject = function(includeInstance, msg) {
+proto.mvcam.GetDevicesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    adapterName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    usecache: jspb.Message.getFieldWithDefault(msg, 2, false)
   };
 
   if (includeInstance) {
@@ -671,23 +672,23 @@ proto.mvcam.AdapterRequest.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.mvcam.AdapterRequest}
+ * @return {!proto.mvcam.GetDevicesRequest}
  */
-proto.mvcam.AdapterRequest.deserializeBinary = function(bytes) {
+proto.mvcam.GetDevicesRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.mvcam.AdapterRequest;
-  return proto.mvcam.AdapterRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.mvcam.GetDevicesRequest;
+  return proto.mvcam.GetDevicesRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.mvcam.AdapterRequest} msg The message object to deserialize into.
+ * @param {!proto.mvcam.GetDevicesRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.mvcam.AdapterRequest}
+ * @return {!proto.mvcam.GetDevicesRequest}
  */
-proto.mvcam.AdapterRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.mvcam.GetDevicesRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -696,7 +697,11 @@ proto.mvcam.AdapterRequest.deserializeBinaryFromReader = function(msg, reader) {
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setName(value);
+      msg.setAdapterName(value);
+      break;
+    case 2:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setUsecache(value);
       break;
     default:
       reader.skipField();
@@ -711,9 +716,9 @@ proto.mvcam.AdapterRequest.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.mvcam.AdapterRequest.prototype.serializeBinary = function() {
+proto.mvcam.GetDevicesRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.mvcam.AdapterRequest.serializeBinaryToWriter(this, writer);
+  proto.mvcam.GetDevicesRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -721,16 +726,23 @@ proto.mvcam.AdapterRequest.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.mvcam.AdapterRequest} message
+ * @param {!proto.mvcam.GetDevicesRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.mvcam.AdapterRequest.serializeBinaryToWriter = function(message, writer) {
+proto.mvcam.GetDevicesRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getName();
+  f = message.getAdapterName();
   if (f.length > 0) {
     writer.writeString(
       1,
+      f
+    );
+  }
+  f = message.getUsecache();
+  if (f) {
+    writer.writeBool(
+      2,
       f
     );
   }
@@ -738,17 +750,34 @@ proto.mvcam.AdapterRequest.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional string name = 1;
+ * optional string adapter_name = 1;
  * @return {string}
  */
-proto.mvcam.AdapterRequest.prototype.getName = function() {
+proto.mvcam.GetDevicesRequest.prototype.getAdapterName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.mvcam.AdapterRequest.prototype.setName = function(value) {
+proto.mvcam.GetDevicesRequest.prototype.setAdapterName = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional bool useCache = 2;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.mvcam.GetDevicesRequest.prototype.getUsecache = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 2, false));
+};
+
+
+/** @param {boolean} value */
+proto.mvcam.GetDevicesRequest.prototype.setUsecache = function(value) {
+  jspb.Message.setProto3BooleanField(this, 2, value);
 };
 
 
@@ -1622,19 +1651,19 @@ proto.mvcam.DeviceInfo.prototype.setConnected = function(value) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.mvcam.DeviceListResponse = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.mvcam.DeviceListResponse.repeatedFields_, null);
+proto.mvcam.GetDevicesResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.mvcam.GetDevicesResponse.repeatedFields_, null);
 };
-goog.inherits(proto.mvcam.DeviceListResponse, jspb.Message);
+goog.inherits(proto.mvcam.GetDevicesResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.mvcam.DeviceListResponse.displayName = 'proto.mvcam.DeviceListResponse';
+  proto.mvcam.GetDevicesResponse.displayName = 'proto.mvcam.GetDevicesResponse';
 }
 /**
  * List of repeated fields within this message type.
  * @private {!Array<number>}
  * @const
  */
-proto.mvcam.DeviceListResponse.repeatedFields_ = [1];
+proto.mvcam.GetDevicesResponse.repeatedFields_ = [1];
 
 
 
@@ -1649,8 +1678,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     for transitional soy proto support: http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.mvcam.DeviceListResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.mvcam.DeviceListResponse.toObject(opt_includeInstance, this);
+proto.mvcam.GetDevicesResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.mvcam.GetDevicesResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -1659,11 +1688,11 @@ proto.mvcam.DeviceListResponse.prototype.toObject = function(opt_includeInstance
  * @param {boolean|undefined} includeInstance Whether to include the JSPB
  *     instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.mvcam.DeviceListResponse} msg The msg instance to transform.
+ * @param {!proto.mvcam.GetDevicesResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.mvcam.DeviceListResponse.toObject = function(includeInstance, msg) {
+proto.mvcam.GetDevicesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     devicesList: jspb.Message.toObjectList(msg.getDevicesList(),
     proto.mvcam.DeviceInfo.toObject, includeInstance)
@@ -1680,23 +1709,23 @@ proto.mvcam.DeviceListResponse.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.mvcam.DeviceListResponse}
+ * @return {!proto.mvcam.GetDevicesResponse}
  */
-proto.mvcam.DeviceListResponse.deserializeBinary = function(bytes) {
+proto.mvcam.GetDevicesResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.mvcam.DeviceListResponse;
-  return proto.mvcam.DeviceListResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.mvcam.GetDevicesResponse;
+  return proto.mvcam.GetDevicesResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.mvcam.DeviceListResponse} msg The message object to deserialize into.
+ * @param {!proto.mvcam.GetDevicesResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.mvcam.DeviceListResponse}
+ * @return {!proto.mvcam.GetDevicesResponse}
  */
-proto.mvcam.DeviceListResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.mvcam.GetDevicesResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -1721,9 +1750,9 @@ proto.mvcam.DeviceListResponse.deserializeBinaryFromReader = function(msg, reade
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.mvcam.DeviceListResponse.prototype.serializeBinary = function() {
+proto.mvcam.GetDevicesResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.mvcam.DeviceListResponse.serializeBinaryToWriter(this, writer);
+  proto.mvcam.GetDevicesResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -1731,11 +1760,11 @@ proto.mvcam.DeviceListResponse.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.mvcam.DeviceListResponse} message
+ * @param {!proto.mvcam.GetDevicesResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.mvcam.DeviceListResponse.serializeBinaryToWriter = function(message, writer) {
+proto.mvcam.GetDevicesResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getDevicesList();
   if (f.length > 0) {
@@ -1752,14 +1781,14 @@ proto.mvcam.DeviceListResponse.serializeBinaryToWriter = function(message, write
  * repeated DeviceInfo devices = 1;
  * @return {!Array<!proto.mvcam.DeviceInfo>}
  */
-proto.mvcam.DeviceListResponse.prototype.getDevicesList = function() {
+proto.mvcam.GetDevicesResponse.prototype.getDevicesList = function() {
   return /** @type{!Array<!proto.mvcam.DeviceInfo>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.mvcam.DeviceInfo, 1));
 };
 
 
 /** @param {!Array<!proto.mvcam.DeviceInfo>} value */
-proto.mvcam.DeviceListResponse.prototype.setDevicesList = function(value) {
+proto.mvcam.GetDevicesResponse.prototype.setDevicesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
@@ -1769,12 +1798,12 @@ proto.mvcam.DeviceListResponse.prototype.setDevicesList = function(value) {
  * @param {number=} opt_index
  * @return {!proto.mvcam.DeviceInfo}
  */
-proto.mvcam.DeviceListResponse.prototype.addDevices = function(opt_value, opt_index) {
+proto.mvcam.GetDevicesResponse.prototype.addDevices = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.mvcam.DeviceInfo, opt_index);
 };
 
 
-proto.mvcam.DeviceListResponse.prototype.clearDevicesList = function() {
+proto.mvcam.GetDevicesResponse.prototype.clearDevicesList = function() {
   this.setDevicesList([]);
 };
 
@@ -2078,7 +2107,7 @@ proto.mvcam.Parameter.prototype.setShouldUpdate = function(value) {
 
 
 /**
- * optional double value = 2;
+ * optional double _value = 2;
  * @return {number}
  */
 proto.mvcam.Parameter.prototype.getValue = function() {

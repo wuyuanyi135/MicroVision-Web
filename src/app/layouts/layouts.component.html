@@ -2,7 +2,7 @@
   <app-header></app-header>
 
   <mat-sidenav-container style="flex: 1 1 auto">
-    <mat-sidenav [(opened)]="sidenavOpenState" mode="side">
+    <mat-sidenav [(opened)]="sidenavService.sidenavOpened" [mode]="sidenavService.isSmallScreen ? 'over' : 'side'">
       <app-sidenav></app-sidenav>
     </mat-sidenav>
     <mat-sidenav-content>

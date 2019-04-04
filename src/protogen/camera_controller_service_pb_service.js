@@ -17,7 +17,7 @@ MicroVisionCameraControlService.GetSerialDevices = {
   service: MicroVisionCameraControlService,
   requestStream: false,
   responseStream: false,
-  requestType: google_protobuf_empty_pb.Empty,
+  requestType: camera_controller_definitions_pb.GetSerialDevicesRequest,
   responseType: camera_controller_definitions_pb.SerialListResponse
 };
 
@@ -36,7 +36,7 @@ MicroVisionCameraControlService.Connect = {
   requestStream: false,
   responseStream: false,
   requestType: camera_controller_definitions_pb.ConnectRequest,
-  responseType: camera_controller_definitions_pb.EmptyResponse
+  responseType: google_protobuf_empty_pb.Empty
 };
 
 MicroVisionCameraControlService.Disconnect = {
@@ -44,8 +44,8 @@ MicroVisionCameraControlService.Disconnect = {
   service: MicroVisionCameraControlService,
   requestStream: false,
   responseStream: false,
-  requestType: google_protobuf_empty_pb.Empty,
-  responseType: camera_controller_definitions_pb.EmptyResponse
+  requestType: camera_controller_definitions_pb.ConnectRequest,
+  responseType: google_protobuf_empty_pb.Empty
 };
 
 MicroVisionCameraControlService.GetDeviceVersion = {
@@ -63,7 +63,7 @@ MicroVisionCameraControlService.SetPower = {
   requestStream: false,
   responseStream: false,
   requestType: camera_controller_definitions_pb.SetPowerRequest,
-  responseType: camera_controller_definitions_pb.EmptyResponse
+  responseType: google_protobuf_empty_pb.Empty
 };
 
 MicroVisionCameraControlService.GetPower = {
@@ -81,7 +81,7 @@ MicroVisionCameraControlService.SetLaserParam = {
   requestStream: false,
   responseStream: false,
   requestType: camera_controller_definitions_pb.SetLaserRequest,
-  responseType: camera_controller_definitions_pb.EmptyResponse
+  responseType: google_protobuf_empty_pb.Empty
 };
 
 MicroVisionCameraControlService.GetLaserParam = {
@@ -99,7 +99,7 @@ MicroVisionCameraControlService.CommitParameter = {
   requestStream: false,
   responseStream: false,
   requestType: google_protobuf_empty_pb.Empty,
-  responseType: camera_controller_definitions_pb.EmptyResponse
+  responseType: google_protobuf_empty_pb.Empty
 };
 
 MicroVisionCameraControlService.ControlLaser = {
@@ -108,7 +108,7 @@ MicroVisionCameraControlService.ControlLaser = {
   requestStream: false,
   responseStream: false,
   requestType: camera_controller_definitions_pb.ControlLaserRequest,
-  responseType: camera_controller_definitions_pb.EmptyResponse
+  responseType: google_protobuf_empty_pb.Empty
 };
 
 MicroVisionCameraControlService.ResetController = {
@@ -117,7 +117,7 @@ MicroVisionCameraControlService.ResetController = {
   requestStream: false,
   responseStream: false,
   requestType: google_protobuf_empty_pb.Empty,
-  responseType: camera_controller_definitions_pb.EmptyResponse
+  responseType: google_protobuf_empty_pb.Empty
 };
 
 exports.MicroVisionCameraControlService = MicroVisionCameraControlService;

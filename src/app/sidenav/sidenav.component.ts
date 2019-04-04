@@ -10,11 +10,8 @@ export class SidenavComponent implements OnInit {
 
   public pagesList = dashboardPages;
   public version = environment.VERSION;
-  public currentUser: string;
-  public permission: string;
+
   constructor() {
-    this.currentUser = 'Guest';
-    this.permission = 'View only';
   }
 
   ngOnInit() {

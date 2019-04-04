@@ -20,8 +20,8 @@ type MicroVisionCameraServiceGetDevices = {
   readonly service: typeof MicroVisionCameraService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof camera_definitions_pb.AdapterRequest;
-  readonly responseType: typeof camera_definitions_pb.DeviceListResponse;
+  readonly requestType: typeof camera_definitions_pb.GetDevicesRequest;
+  readonly responseType: typeof camera_definitions_pb.GetDevicesResponse;
 };
 
 type MicroVisionCameraServiceQueryDeviceById = {
@@ -172,13 +172,13 @@ export class MicroVisionCameraServiceClient {
     callback: (error: ServiceError|null, responseMessage: camera_definitions_pb.AvailableAdaptersResponse|null) => void
   ): UnaryResponse;
   getDevices(
-    requestMessage: camera_definitions_pb.AdapterRequest,
+    requestMessage: camera_definitions_pb.GetDevicesRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: camera_definitions_pb.DeviceListResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: camera_definitions_pb.GetDevicesResponse|null) => void
   ): UnaryResponse;
   getDevices(
-    requestMessage: camera_definitions_pb.AdapterRequest,
-    callback: (error: ServiceError|null, responseMessage: camera_definitions_pb.DeviceListResponse|null) => void
+    requestMessage: camera_definitions_pb.GetDevicesRequest,
+    callback: (error: ServiceError|null, responseMessage: camera_definitions_pb.GetDevicesResponse|null) => void
   ): UnaryResponse;
   queryDeviceById(
     requestMessage: camera_definitions_pb.IdRequest,

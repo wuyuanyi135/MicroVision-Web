@@ -1,0 +1,45 @@
+<div class="mat-typography" *ngIf="!previewService.previewStream">
+  No stream service found. Did you connect to a device pair?
+</div>
+
+<mat-tab-group *ngIf="previewService.previewStream.length > 1" style="height: 100%">
+  <mat-tab [label]="stream.name" *ngFor="let stream of previewService.previewStream">
+    <ng-template matTabContent style="height: 100%;">
+      <ng-container [ngTemplateOutlet]="tempRef"
+                    [ngTemplateOutletContext]="{stream: stream}">
+      </ng-container>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>
+
+<div
+  *ngIf="previewService.previewStream.length == 1"
+  [ngTemplateOutlet]="tempRef" [ngTemplateOutletContext]="{stream: previewService.previewStream[0]}"
+  style="height: 100%;"
+></div>
+
+<ng-template #tempRef let-stream="stream">
+  <mat-sidenav-container hasBackdrop="false">
+    <mat-sidenav [opened]="showConfigurePanel" [mode]="smallScreen ? 'over' : 'side'" position="end">
+      <app-configure-panel id="configure-panel"></app-configure-panel>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-card
+        id="preview-card"
+        (dblclick)="dbClickToggleState()">
+        <mat-card-title>
+          Preview
+        </mat-card-title>
+        <mat-card-subtitle>
+          {{stream.name}}
+        </mat-card-subtitle>
+        <mat-card-content>
+          <app-preview
+            id="preview"
+            [previewStream]="stream"
+          ></app-preview>
+        </mat-card-content>
+      </mat-card>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</ng-template>

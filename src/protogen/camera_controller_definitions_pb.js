@@ -15,7 +15,7 @@ goog.exportSymbol('proto.mvcamctrl.ConnectRequest', null, global);
 goog.exportSymbol('proto.mvcamctrl.ControlLaserRequest', null, global);
 goog.exportSymbol('proto.mvcamctrl.DeviceVersionResponse', null, global);
 goog.exportSymbol('proto.mvcamctrl.DriverVersionResponse', null, global);
-goog.exportSymbol('proto.mvcamctrl.EmptyResponse', null, global);
+goog.exportSymbol('proto.mvcamctrl.GetSerialDevicesRequest', null, global);
 goog.exportSymbol('proto.mvcamctrl.LaserConfiguration', null, global);
 goog.exportSymbol('proto.mvcamctrl.PowerConfiguration', null, global);
 goog.exportSymbol('proto.mvcamctrl.SerialDeviceMapping', null, global);
@@ -400,12 +400,12 @@ proto.mvcamctrl.SerialListResponse.prototype.clearDeviceListList = function() {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.mvcamctrl.EmptyResponse = function(opt_data) {
+proto.mvcamctrl.GetSerialDevicesRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.mvcamctrl.EmptyResponse, jspb.Message);
+goog.inherits(proto.mvcamctrl.GetSerialDevicesRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.mvcamctrl.EmptyResponse.displayName = 'proto.mvcamctrl.EmptyResponse';
+  proto.mvcamctrl.GetSerialDevicesRequest.displayName = 'proto.mvcamctrl.GetSerialDevicesRequest';
 }
 
 
@@ -420,8 +420,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     for transitional soy proto support: http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.mvcamctrl.EmptyResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.mvcamctrl.EmptyResponse.toObject(opt_includeInstance, this);
+proto.mvcamctrl.GetSerialDevicesRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.mvcamctrl.GetSerialDevicesRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -430,13 +430,13 @@ proto.mvcamctrl.EmptyResponse.prototype.toObject = function(opt_includeInstance)
  * @param {boolean|undefined} includeInstance Whether to include the JSPB
  *     instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.mvcamctrl.EmptyResponse} msg The msg instance to transform.
+ * @param {!proto.mvcamctrl.GetSerialDevicesRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.mvcamctrl.EmptyResponse.toObject = function(includeInstance, msg) {
+proto.mvcamctrl.GetSerialDevicesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-
+    usecache: jspb.Message.getFieldWithDefault(msg, 1, false)
   };
 
   if (includeInstance) {
@@ -450,29 +450,33 @@ proto.mvcamctrl.EmptyResponse.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.mvcamctrl.EmptyResponse}
+ * @return {!proto.mvcamctrl.GetSerialDevicesRequest}
  */
-proto.mvcamctrl.EmptyResponse.deserializeBinary = function(bytes) {
+proto.mvcamctrl.GetSerialDevicesRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.mvcamctrl.EmptyResponse;
-  return proto.mvcamctrl.EmptyResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.mvcamctrl.GetSerialDevicesRequest;
+  return proto.mvcamctrl.GetSerialDevicesRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.mvcamctrl.EmptyResponse} msg The message object to deserialize into.
+ * @param {!proto.mvcamctrl.GetSerialDevicesRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.mvcamctrl.EmptyResponse}
+ * @return {!proto.mvcamctrl.GetSerialDevicesRequest}
  */
-proto.mvcamctrl.EmptyResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.mvcamctrl.GetSerialDevicesRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setUsecache(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -486,9 +490,9 @@ proto.mvcamctrl.EmptyResponse.deserializeBinaryFromReader = function(msg, reader
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.mvcamctrl.EmptyResponse.prototype.serializeBinary = function() {
+proto.mvcamctrl.GetSerialDevicesRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.mvcamctrl.EmptyResponse.serializeBinaryToWriter(this, writer);
+  proto.mvcamctrl.GetSerialDevicesRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -496,12 +500,36 @@ proto.mvcamctrl.EmptyResponse.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.mvcamctrl.EmptyResponse} message
+ * @param {!proto.mvcamctrl.GetSerialDevicesRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.mvcamctrl.EmptyResponse.serializeBinaryToWriter = function(message, writer) {
+proto.mvcamctrl.GetSerialDevicesRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getUsecache();
+  if (f) {
+    writer.writeBool(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional bool useCache = 1;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.mvcamctrl.GetSerialDevicesRequest.prototype.getUsecache = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 1, false));
+};
+
+
+/** @param {boolean} value */
+proto.mvcamctrl.GetSerialDevicesRequest.prototype.setUsecache = function(value) {
+  jspb.Message.setProto3BooleanField(this, 1, value);
 };
 
 
@@ -525,9 +553,9 @@ if (goog.DEBUG && !COMPILED) {
 }
 /**
  * Oneof group definitions for this message. Each group defines the field
- * numbers belonging to that group. When of these fields' value is set, all
+ * numbers belonging to that group. When of these fields' _value is set, all
  * other fields in the group are cleared. During deserialization, if multiple
- * fields are encountered for a group, only the last value seen will be kept.
+ * fields are encountered for a group, only the last _value seen will be kept.
  * @private {!Array<!Array<number>>}
  * @const
  */

@@ -14,6 +14,15 @@ type MicroVisionCGIGetVersion = {
   readonly responseType: typeof cgi_definitions_pb.GetVersionResponse;
 };
 
+type MicroVisionCGIBackendServerInterface = {
+  readonly methodName: string;
+  readonly service: typeof MicroVisionCGI;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof cgi_definitions_pb.BackendServerInterfaceRequest;
+  readonly responseType: typeof cgi_definitions_pb.BackendServerInterfaceResponse;
+};
+
 type MicroVisionCGIListDevices = {
   readonly methodName: string;
   readonly service: typeof MicroVisionCGI;
@@ -23,20 +32,51 @@ type MicroVisionCGIListDevices = {
   readonly responseType: typeof cgi_definitions_pb.ListDevicesResponse;
 };
 
-type MicroVisionCGIConnectDevices = {
+type MicroVisionCGIDeviceInterface = {
   readonly methodName: string;
   readonly service: typeof MicroVisionCGI;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof cgi_definitions_pb.ConnectDevicesRequest;
-  readonly responseType: typeof cgi_definitions_pb.ConnectDevicesResponse;
+  readonly requestType: typeof cgi_definitions_pb.DeviceInterfaceRequest;
+  readonly responseType: typeof cgi_definitions_pb.DeviceInterfaceResponse;
+};
+
+type MicroVisionCGIDeviceParameterInterface = {
+  readonly methodName: string;
+  readonly service: typeof MicroVisionCGI;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof cgi_definitions_pb.DeviceParameterInterfaceRequest;
+  readonly responseType: typeof cgi_definitions_pb.DeviceParameterInterfaceResponse;
+};
+
+type MicroVisionCGICameraStreaming = {
+  readonly methodName: string;
+  readonly service: typeof MicroVisionCGI;
+  readonly requestStream: false;
+  readonly responseStream: true;
+  readonly requestType: typeof cgi_definitions_pb.CameraStreamingRequest;
+  readonly responseType: typeof cgi_definitions_pb.CameraStream;
+};
+
+type MicroVisionCGICameraCapturing = {
+  readonly methodName: string;
+  readonly service: typeof MicroVisionCGI;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof cgi_definitions_pb.CameraCapturingRequest;
+  readonly responseType: typeof cgi_definitions_pb.CameraCapturingResponse;
 };
 
 export class MicroVisionCGI {
   static readonly serviceName: string;
   static readonly GetVersion: MicroVisionCGIGetVersion;
+  static readonly BackendServerInterface: MicroVisionCGIBackendServerInterface;
   static readonly ListDevices: MicroVisionCGIListDevices;
-  static readonly ConnectDevices: MicroVisionCGIConnectDevices;
+  static readonly DeviceInterface: MicroVisionCGIDeviceInterface;
+  static readonly DeviceParameterInterface: MicroVisionCGIDeviceParameterInterface;
+  static readonly CameraStreaming: MicroVisionCGICameraStreaming;
+  static readonly CameraCapturing: MicroVisionCGICameraCapturing;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -80,6 +120,15 @@ export class MicroVisionCGIClient {
     requestMessage: cgi_definitions_pb.GetVersionRequest,
     callback: (error: ServiceError|null, responseMessage: cgi_definitions_pb.GetVersionResponse|null) => void
   ): UnaryResponse;
+  backendServerInterface(
+    requestMessage: cgi_definitions_pb.BackendServerInterfaceRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: cgi_definitions_pb.BackendServerInterfaceResponse|null) => void
+  ): UnaryResponse;
+  backendServerInterface(
+    requestMessage: cgi_definitions_pb.BackendServerInterfaceRequest,
+    callback: (error: ServiceError|null, responseMessage: cgi_definitions_pb.BackendServerInterfaceResponse|null) => void
+  ): UnaryResponse;
   listDevices(
     requestMessage: cgi_definitions_pb.ListDevicesRequest,
     metadata: grpc.Metadata,
@@ -89,14 +138,33 @@ export class MicroVisionCGIClient {
     requestMessage: cgi_definitions_pb.ListDevicesRequest,
     callback: (error: ServiceError|null, responseMessage: cgi_definitions_pb.ListDevicesResponse|null) => void
   ): UnaryResponse;
-  connectDevices(
-    requestMessage: cgi_definitions_pb.ConnectDevicesRequest,
+  deviceInterface(
+    requestMessage: cgi_definitions_pb.DeviceInterfaceRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: cgi_definitions_pb.ConnectDevicesResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: cgi_definitions_pb.DeviceInterfaceResponse|null) => void
   ): UnaryResponse;
-  connectDevices(
-    requestMessage: cgi_definitions_pb.ConnectDevicesRequest,
-    callback: (error: ServiceError|null, responseMessage: cgi_definitions_pb.ConnectDevicesResponse|null) => void
+  deviceInterface(
+    requestMessage: cgi_definitions_pb.DeviceInterfaceRequest,
+    callback: (error: ServiceError|null, responseMessage: cgi_definitions_pb.DeviceInterfaceResponse|null) => void
+  ): UnaryResponse;
+  deviceParameterInterface(
+    requestMessage: cgi_definitions_pb.DeviceParameterInterfaceRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: cgi_definitions_pb.DeviceParameterInterfaceResponse|null) => void
+  ): UnaryResponse;
+  deviceParameterInterface(
+    requestMessage: cgi_definitions_pb.DeviceParameterInterfaceRequest,
+    callback: (error: ServiceError|null, responseMessage: cgi_definitions_pb.DeviceParameterInterfaceResponse|null) => void
+  ): UnaryResponse;
+  cameraStreaming(requestMessage: cgi_definitions_pb.CameraStreamingRequest, metadata?: grpc.Metadata): ResponseStream<cgi_definitions_pb.CameraStream>;
+  cameraCapturing(
+    requestMessage: cgi_definitions_pb.CameraCapturingRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: cgi_definitions_pb.CameraCapturingResponse|null) => void
+  ): UnaryResponse;
+  cameraCapturing(
+    requestMessage: cgi_definitions_pb.CameraCapturingRequest,
+    callback: (error: ServiceError|null, responseMessage: cgi_definitions_pb.CameraCapturingResponse|null) => void
   ): UnaryResponse;
 }
 

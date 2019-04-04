@@ -1,0 +1,28 @@
+#preview-card {
+  margin: 10px;
+}
+
+.mat-divider-vertical {
+  margin: 0 10px;
+}
+
+#configure-panel {
+  overflow-y: auto;
+  flex: 1 1 300px;
+  padding: 10px;
+  display: block;
+}
+
+#preview {
+  flex: 3 3 auto;
+}
+
+:host {
+  ::ng-deep.mat-tab-body-wrapper {
+    height: 100%;
+  }
+  ::ng-deep.mat-drawer-container {
+    height: 100%;
+  }
+}
+

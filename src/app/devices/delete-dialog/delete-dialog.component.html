@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>
+  Delete {{data.pairName}}
+</h1>
+
+<div class="mat-typography prompt" mat-dialog-content>
+  <p>
+    Confirm deleting configuration pair {{data.pairName}}
+  </p>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button color="warn" (click)="confirmDelete()">Delete</button>
+  <button mat-button (click)="onCancelClick()">Cancel</button>
+</div>

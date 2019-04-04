@@ -1,0 +1,28 @@
+<div fxLayout="row" style="display: flex; align-items: center">
+  <button mat-icon-button class="arrow-icon-button" disableRipple (click)="btnValueAdjustment(-tick)">
+    <mat-icon inline>chevron_left</mat-icon>
+  </button>
+  <mat-slider
+    #slider
+    [ngModel]="value"
+    (input)="sliderChanged(slider.value)"
+    [min]="min"
+    [max]="max"
+    [tickInterval]="tick"
+    [step]="tick"
+  >
+  </mat-slider>
+  <button mat-icon-button class="arrow-icon-button" disableRipple (click)="btnValueAdjustment(tick)">
+    <mat-icon inline>chevron_right</mat-icon>
+  </button>
+  <mat-form-field id="input-field">
+    <input
+      id="input"
+      matInput
+      [ngModel]="value"
+      autocomplete="off"
+      (keypress)="detectEnter($event)"
+      type="number"
+    />
+  </mat-form-field>
+</div>

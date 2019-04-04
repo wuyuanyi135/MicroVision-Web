@@ -1,6 +1,7 @@
 import {Routes} from '@angular/router';
 import {MainComponent} from './main/main.component';
 import {AcquisitionComponent} from './acquisition/acquisition.component';
+import {DevicesComponent} from './devices/devices.component';
 
 export const appRoutes: Routes = [
   {
@@ -8,11 +9,16 @@ export const appRoutes: Routes = [
     component: MainComponent,
     children: [
       {
+        path: 'devices',
+        component: DevicesComponent,
+      },
+      {
         path: 'acquisition',
         component: AcquisitionComponent,
       }, {
         path: '',
-        component: AcquisitionComponent,
+        redirectTo: 'acquisition',
+        pathMatch: 'full'
       }
     ]
   }

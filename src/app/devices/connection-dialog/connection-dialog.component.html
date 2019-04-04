@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>
+  {{ getTitle() }}
+</h1>
+<div mat-dialog-content class="mat-typography prompt-container">
+  <p *ngFor="let line of displayText; let isEven = even" [class.error]="line.error" [class.alt]="isEven">{{line.text}}</p>
+</div>
+
+<div mat-dialog-actions>
+  <button class="done-button" mat-button [disabled]="!completed" (click)="done()">Done</button>
+</div>
