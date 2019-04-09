@@ -31,6 +31,16 @@ import { LightingSettingComponent } from './acquisition/configure-panel/lighting
 import { ActionSettingComponent } from './acquisition/configure-panel/action-setting/action-setting.component';
 import {SizeMatchDirective, SizeMatchSrcDirective} from './core/size-match.directive';
 import {ResizableModule} from 'angular-resizable-element';
+import { DatabaseComponent } from './database/database.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { ReadableSizePipe } from './core/pipe/readable-size.pipe';
+import { SanitizeUrlPipe } from './core/pipe/sanitize-url.pipe';
+import {MatProgressBarModule} from '@angular/material';
+import { StorageFooterComponent } from './storage-footer/storage-footer.component';
+import { DetailedViewComponent } from './database/detailed-view/detailed-view.component';
+import { ConfirmDialogComponent } from './common/dialogs/confirm/confirm-dialog.component';
+import {TextInputDialogComponent} from './common/dialogs/text-input-dialog/text-input-dialog.component';
+import { ToSafeUrlPipe } from './core/pipe/to-safe-url.pipe';
 
 @NgModule({
   declarations: [
@@ -54,6 +64,14 @@ import {ResizableModule} from 'angular-resizable-element';
     ActionSettingComponent,
     SizeMatchDirective,
     SizeMatchSrcDirective,
+    DatabaseComponent,
+    ReadableSizePipe,
+    SanitizeUrlPipe,
+    StorageFooterComponent,
+    DetailedViewComponent,
+    ConfirmDialogComponent,
+    TextInputDialogComponent,
+    ToSafeUrlPipe,
   ],
   imports: [
     CommonModule,
@@ -64,13 +82,16 @@ import {ResizableModule} from 'angular-resizable-element';
     MaterialModule,
     WebStorageModule,
     ResizableModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
+    MatProgressBarModule,
   ],
-  providers: [{provide: Window, useValue: window}],
   bootstrap: [AppComponent],
   entryComponents: [
     DeviceConfigurationDialogComponent,
     DeleteDialogComponent,
     ConnectionDialogComponent,
+    ConfirmDialogComponent,
+    TextInputDialogComponent,
   ],
 })
 export class AppModule { }

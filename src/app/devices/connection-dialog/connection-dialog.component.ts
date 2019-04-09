@@ -1,7 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {DEVICE_SERVICE, IDeviceService} from '../../core/api/device/device';
-import {IDevicePair} from '../../core/device-pair';
+import {DEVICE_SERVICE, DevicePair, IDeviceService} from '../../core/api/device/device';
 import {ConnectAction} from '../../core/connect-action.enum';
 
 @Component({
@@ -18,7 +17,7 @@ export class ConnectionDialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<ConnectionDialogComponent>,
     @Inject(DEVICE_SERVICE) public devSrv: IDeviceService,
-    @Inject(MAT_DIALOG_DATA) public data: IDevicePair,
+    @Inject(MAT_DIALOG_DATA) public data: DevicePair,
   ) {
     if (data.connected) {
       this.action = ConnectAction.DISCONNECT;
@@ -60,9 +59,9 @@ export class ConnectionDialogComponent implements OnInit {
 
   getTitle(): string {
     if (this.action === ConnectAction.CONNECT ) {
-      return `Connecting ${this.data.pairName}`;
+      return `Connecting device`;
     } else {
-      return `Disconnecting ${this.data.pairName}`;
+      return `Disconnecting device`;
     }
   }
 }

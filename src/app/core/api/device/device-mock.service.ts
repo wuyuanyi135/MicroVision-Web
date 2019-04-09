@@ -1,72 +1,77 @@
 /* tslint:disable:no-bitwise */
 import {Injectable} from '@angular/core';
-import {IDeviceService} from './device';
+import {DeviceList, DevicePair, IDeviceService} from './device';
 import {CRUDAction} from '../../crud-action.enum';
 import * as faker from 'faker';
-import {Observable, of, throwError} from 'rxjs';
+import {BehaviorSubject, Observable, of, throwError} from 'rxjs';
 import {ConnectAction} from '../../connect-action.enum';
-import {IDevicePair} from '../../device-pair';
 import {delay} from 'q';
+import {take} from 'rxjs/operators';
 
 @Injectable()
 export class DeviceMockService implements IDeviceService {
 
-  AllDevices: { Camera?: string[]; Controller?: string[] };
-  devicePairs: IDevicePair[];
+  public DevicePairs = new BehaviorSubject<DevicePair[]>([]);
+  public AllDevices = new BehaviorSubject<DeviceList>({});
 
 
-  CRUDPair(pair: IDevicePair[], op: CRUDAction, refresh: boolean): Observable<string> {
+  async CRUDPair(pair: DevicePair[], op: CRUDAction, refresh: boolean): Promise<string> {
+    let devicePairs = this.DevicePairs.value;
     for (const p of pair) {
       switch (op) {
         case CRUDAction.UPDATE:
-          if (!p.id) { continue; }
-          const i = this.devicePairs.findIndex(value => p.id === value.id);
-          this.devicePairs[i] = p;
+          if (!p.id) {
+            continue;
+          }
+          const i = devicePairs.findIndex(value => p.id === value.id);
+          devicePairs[i] = p;
           break;
 
         case CRUDAction.DELETE:
-          if (!p.id) { continue; }
-          this.devicePairs = this.devicePairs.filter(value => p.id !== value.id);
-          break;
-        case CRUDAction.UPDATE_OR_CREATE:
-        case CRUDAction.CREATE:
           if (!p.id) {
-            p.id = this.uuidv4();
-            this.devicePairs.push(p);
             continue;
           }
-          const ind = this.devicePairs.findIndex(value => p.id === value.id);
+          devicePairs = devicePairs.filter(value => p.id !== value.id);
+          break;
+        case CRUDAction.CREATE:
+          if (!p.id) {
+            p.id = faker.random.number({precision: 1});
+            devicePairs.push(p);
+            continue;
+          }
+          const ind = devicePairs.findIndex(value => p.id === value.id);
           if (ind < 0) {
-            this.devicePairs.push(p);
+            devicePairs.push(p);
           } else {
-            this.devicePairs[ind] = p;
+            devicePairs[ind] = p;
           }
           break;
         default:
-          return throwError(`Unknown action ${op}`);
+          throw Error(`Unknown action ${op}`);
       }
+      this.DevicePairs.next(devicePairs);
     }
     if (refresh) {
       this.refresh(false);
     }
-    return of('Mock pair CRUD complete');
+    return 'Mock pair CRUD complete';
   }
 
-  connectPair(pair: IDevicePair, op: ConnectAction): Observable<string> {
-    const allDevices = this.AllDevices;
-    if (!allDevices.Camera.includes(pair.camera))  {
-      throw new Error('Camera does not exist');
-    }
-    if (!allDevices.Controller.includes(pair.controller)) {
-      throw new Error('Controller does not exist');
-    }
+  connectPair(pair: DevicePair, op: ConnectAction): Observable<string> {
     return new Observable(subscriber => {
       (async () => {
+        const allDevices = this.AllDevices.value;
+        if (!allDevices.Camera.find(v => v.id === pair.camera.id)) {
+          throw new Error('Camera does not exist');
+        }
+        if (!allDevices.Controller.find(v => v.id === pair.camera.id)) {
+          throw new Error('Controller does not exist');
+        }
         if (faker.random.boolean()) {
           setTimeout(() => subscriber.error('Connection Failed'), 2000);
         } else {
           await delay(1000);
-          const devicePair = this.devicePairs.find(value => pair.id === value.id);
+          const devicePair = this.DevicePairs.value.find(value => pair.id === value.id);
           const operation = op === ConnectAction.CONNECT ? 'connected' : 'disconnected';
           subscriber.next(`Controller ${operation}`);
           await delay(1000);
@@ -80,37 +85,29 @@ export class DeviceMockService implements IDeviceService {
 
   refresh(deviceDiscovery: boolean) {
     if (deviceDiscovery) {
-      this.AllDevices.Camera = [];
+      const camera = [];
       for (let i = 0; i < faker.random.number(10); i++) {
-        this.AllDevices.Camera.push(`Camera_${i}`);
+        camera.push(`Camera_${i}`);
       }
-      this.AllDevices.Controller = [];
+      const controller = [];
       for (let i = 0; i < faker.random.number(10); i++) {
-        this.AllDevices.Controller.push(`Controller_${i}`);
+        controller.push(`Controller_${i}`);
       }
+      this.AllDevices.next({Camera: camera, Controller: controller});
     }
   }
 
   resetAllDevices() {
-    this.devicePairs.forEach(value => {
+    const devicePairs = this.DevicePairs.value;
+    devicePairs.forEach(value => {
       value.connected = false;
     });
+    this.DevicePairs.next(devicePairs);
   }
-  uuidv4(): string {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
-      const r = Math.random() * 16 | 0;
-      const v = c === 'x' ? r : (r & 0x3 | 0x8);
-      return v.toString(16);
-    });
-  }
+
   constructor() {
-    this.AllDevices = {};
-    this.devicePairs = [];
     this.refresh(true);
     console.log(`Mock device service initialized`);
-    console.log(this.AllDevices.Controller);
-    console.log(this.AllDevices.Camera);
-
   }
 }
 

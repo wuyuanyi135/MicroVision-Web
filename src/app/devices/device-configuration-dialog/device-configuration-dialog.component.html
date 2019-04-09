@@ -1,22 +1,18 @@
 <h1 mat-dialog-title>
-  {{create ? 'Create new pair' : 'Edit ' + data.pairName}}
+  {{create ? 'Create new pair' : 'Edit'}}
   <button mat-icon-button (click)="rediscovery()"><mat-icon>refresh</mat-icon></button>
 </h1>
 
-<div mat-dialog-content>
+<div mat-dialog-content *ngIf="devSrv.AllDevices | async as allDevices">
   <form [formGroup]="fg">
     <mat-form-field>
-      <input matInput formControlName="pairName" placeholder="Pair Name"/>
-      <mat-error *ngIf="fg.hasError('required', 'pairName')">{{fg.getError('required', 'pairName')}}</mat-error>
-    </mat-form-field>
-    <mat-form-field>
       <mat-select formControlName="camera" placeholder="Camera">
-        <mat-option [value]="v" *ngFor="let v of devSrv.AllDevices.Camera">{{v}}</mat-option>
+        <mat-option [value]="v" *ngFor="let v of allDevices.Camera">{{v.displayName}}</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field>
       <mat-select formControlName="controller" placeholder="Controller">
-        <mat-option [value]="v" *ngFor="let v of devSrv.AllDevices.Controller">{{v}}</mat-option>
+        <mat-option [value]="v" *ngFor="let v of allDevices.Controller">{{v.displayName}}</mat-option>
       </mat-select>
     </mat-form-field>
   </form>

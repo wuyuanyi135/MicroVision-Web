@@ -16,7 +16,7 @@ export class PreviewComponent implements OnInit, OnDestroy {
   @Input()
   public previewStream: IPreviewStream;
 
-  private imageUrl: SafeUrl;
+  public imageUrl: string;
   private subscription: Subscription;
 
   constructor(private sanitizer: DomSanitizer) {
@@ -24,7 +24,8 @@ export class PreviewComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription = this.previewStream.stream.subscribe(value => {
-        this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(value));
+        URL.revokeObjectURL(this.imageUrl);
+        this.imageUrl = URL.createObjectURL(value);
       }
     );
   }
@@ -36,11 +37,4 @@ export class PreviewComponent implements OnInit, OnDestroy {
   revoke(url: string) {
     URL.revokeObjectURL(url);
   }
-
-  imageLoaded() {
-
-    // this.imgHeight = this.imgRef.nativeElement.getBoundingClientRect().height;
-    this.revoke(this.imgRef.nativeElement.currentSrc);
-  }
-
 }

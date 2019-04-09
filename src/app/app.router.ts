@@ -2,6 +2,7 @@ import {Routes} from '@angular/router';
 import {MainComponent} from './main/main.component';
 import {AcquisitionComponent} from './acquisition/acquisition.component';
 import {DevicesComponent} from './devices/devices.component';
+import {DatabaseComponent} from './database/database.component';
 
 export const appRoutes: Routes = [
   {
@@ -19,7 +20,10 @@ export const appRoutes: Routes = [
         path: '',
         redirectTo: 'acquisition',
         pathMatch: 'full'
-      }
+      }, {
+        path: 'database',
+        component: DatabaseComponent,
+      },
     ]
   }
 ];

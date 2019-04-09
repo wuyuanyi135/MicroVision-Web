@@ -1,24 +1,9 @@
-<div class="mat-typography" *ngIf="!previewService.previewStream">
-  No stream service found. Did you connect to a device pair?
+<div class="mat-typography" *ngIf="!stream">
+  No stream found. Have you connected the pair in device configuration?
 </div>
 
-<mat-tab-group *ngIf="previewService.previewStream.length > 1" style="height: 100%">
-  <mat-tab [label]="stream.name" *ngFor="let stream of previewService.previewStream">
-    <ng-template matTabContent style="height: 100%;">
-      <ng-container [ngTemplateOutlet]="tempRef"
-                    [ngTemplateOutletContext]="{stream: stream}">
-      </ng-container>
-    </ng-template>
-  </mat-tab>
-</mat-tab-group>
 
-<div
-  *ngIf="previewService.previewStream.length == 1"
-  [ngTemplateOutlet]="tempRef" [ngTemplateOutletContext]="{stream: previewService.previewStream[0]}"
-  style="height: 100%;"
-></div>
-
-<ng-template #tempRef let-stream="stream">
+<div style="height: 100%;" *ngIf="stream">
   <mat-sidenav-container hasBackdrop="false">
     <mat-sidenav [opened]="showConfigurePanel" [mode]="smallScreen ? 'over' : 'side'" position="end">
       <app-configure-panel id="configure-panel"></app-configure-panel>
@@ -42,4 +27,5 @@
       </mat-card>
     </mat-sidenav-content>
   </mat-sidenav-container>
-</ng-template>
+</div>
+

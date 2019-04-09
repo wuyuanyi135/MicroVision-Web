@@ -15,6 +15,7 @@ import {
   MatSelectModule,
   MatInputModule, MatTabsModule, MatSlideToggleModule, MatSliderModule,
 } from '@angular/material';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [],
@@ -40,6 +41,7 @@ import {
     MatTabsModule,
     MatSlideToggleModule,
     MatSliderModule,
+    ScrollingModule,
   ]
 })
 export class MaterialModule {

@@ -2,8 +2,7 @@ import {Component, Inject, InjectionToken, OnInit, ViewChild} from '@angular/cor
 import {MatDialog, MatTable} from '@angular/material';
 import {DeviceConfigurationDialogComponent} from './device-configuration-dialog/device-configuration-dialog.component';
 import {DeleteDialogComponent} from './delete-dialog/delete-dialog.component';
-import {DEVICE_SERVICE, IDeviceService} from '../core/api/device/device';
-import {IDevicePair} from '../core/device-pair';
+import {DEVICE_SERVICE, DevicePair, IDeviceService} from '../core/api/device/device';
 import {ConnectionDialogComponent} from './connection-dialog/connection-dialog.component';
 
 @Component({
@@ -14,33 +13,37 @@ import {ConnectionDialogComponent} from './connection-dialog/connection-dialog.c
 export class DevicesComponent implements OnInit {
 
   @ViewChild('deviceTable') public deviceTable: MatTable<object>;
-  displayedColumns = ['index', 'name', 'camera', 'controller', 'edit', 'delete'];
+  displayedColumns = ['index', 'camera', 'controller', 'edit', 'delete'];
   constructor(
     private dialog: MatDialog,
-    @Inject(DEVICE_SERVICE) private deviceSrv: IDeviceService) { }
+    @Inject(DEVICE_SERVICE) public deviceSrv: IDeviceService) { }
 
   ngOnInit() {
+    this.updateTable();
   }
 
+  updateTable() {
+    this.deviceSrv.refresh(false);
+  }
   createPair() {
     const dialogRef = this.dialog.open(DeviceConfigurationDialogComponent);
     dialogRef.componentInstance.create = true;
-    dialogRef.afterClosed().subscribe(value => this.deviceTable.renderRows());
+    dialogRef.afterClosed().subscribe(value => this.updateTable());
   }
 
-  editPair(element: IDevicePair) {
+  editPair(element: DevicePair) {
     const dialogRef = this.dialog.open(DeviceConfigurationDialogComponent, {data: element});
     dialogRef.componentInstance.create = false;
-    dialogRef.afterClosed().subscribe(value => this.deviceTable.renderRows());
+    dialogRef.afterClosed().subscribe(value => this.updateTable());
   }
 
-  deletePair(element: IDevicePair) {
+  deletePair(element: DevicePair) {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {data: element});
-    dialogRef.afterClosed().subscribe(value => this.deviceTable.renderRows());
+    dialogRef.afterClosed().subscribe(value => this.updateTable());
   }
 
-  toggleConnection(row: IDevicePair ) {
+  toggleConnection(row: DevicePair ) {
     const dialogRef = this.dialog.open(ConnectionDialogComponent, {data: row});
-    dialogRef.afterClosed().subscribe(value => this.deviceTable.renderRows());
+    dialogRef.afterClosed().subscribe(value => this.updateTable());
   }
 }

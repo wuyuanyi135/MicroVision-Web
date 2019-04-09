@@ -1,5 +1,5 @@
 import {Component, OnInit, Inject, OnDestroy} from '@angular/core';
-import {IPreviewService, PREVIEW_SERVICE} from '../core/api/preview/preview';
+import {IPreviewService, IPreviewStream, PREVIEW_SERVICE} from '../core/api/preview/preview';
 import {MediaObserver} from '@angular/flex-layout';
 import {Subscription} from 'rxjs';
 import {IResizeEvent} from 'angular2-draggable/lib/models/resize-event';
@@ -11,6 +11,7 @@ import {IResizeEvent} from 'angular2-draggable/lib/models/resize-event';
 })
 export class AcquisitionComponent implements OnInit, OnDestroy {
   smallScreen: boolean;
+  public stream: IPreviewStream;
   private subscription: Subscription;
   private toggleConfigurePanel = false;
   get showConfigurePanel(): boolean {
@@ -24,6 +25,9 @@ export class AcquisitionComponent implements OnInit, OnDestroy {
     this.subscription = this.mediaObserver.media$.subscribe(
       value => this.smallScreen = this.mediaObserver.isActive('lt-sm')
     );
+    try {
+      this.stream = this.previewService.previewStream[0];
+    } catch (e) {}
   }
 
   ngOnDestroy(): void {

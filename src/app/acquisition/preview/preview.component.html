@@ -1,2 +1,2 @@
-<img id="preview" #imageDisplay [src]="imageUrl" (load)="revoke(imageUrl)" alt="Preview" *ngIf="imageUrl"/>
+<img id="preview" #imageDisplay [src]="imageUrl | sanitizeUrl" alt="Preview" *ngIf="imageUrl"/>
 <!--<canvas id="preview" #imageDisplayContainer></canvas>-->

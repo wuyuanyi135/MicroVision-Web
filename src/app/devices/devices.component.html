@@ -1,15 +1,10 @@
 <div class="mat-typography" id="container">
   <span class="mat-h2 header">Device Pair Configuration</span>
 
-  <table #deviceTable mat-table class="mat-elevation-z1" [dataSource]="deviceSrv.devicePairs">
+  <table #deviceTable mat-table class="mat-elevation-z1" [dataSource]="deviceSrv.DevicePairs | async">
     <ng-container matColumnDef="index">
       <th mat-header-cell *matHeaderCellDef class="index-col"> # </th>
-      <td mat-cell (click)="toggleConnection(element)" *matCellDef="let i = index" class="index-col"> {{i}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell (click)="toggleConnection(element)" *matCellDef="let element"> {{element.pairName}} </td>
+      <td mat-cell (click)="toggleConnection(element)" *matCellDef="let element; let i = index" class="index-col"> {{i}} </td>
     </ng-container>
 
     <ng-container matColumnDef="camera">

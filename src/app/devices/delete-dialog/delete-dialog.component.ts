@@ -1,8 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from '@angular/material';
-import {DEVICE_SERVICE, IDeviceService} from '../../core/api/device/device';
+import {DEVICE_SERVICE, DevicePair, IDeviceService} from '../../core/api/device/device';
 import {CRUDAction} from '../../core/crud-action.enum';
-import {IDevicePair} from '../../core/device-pair';
 
 @Component({
   selector: 'app-delete-dialog',
@@ -15,7 +14,7 @@ export class DeleteDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<DeleteDialogComponent>,
     public snack: MatSnackBar,
     @Inject(DEVICE_SERVICE) public devSrv: IDeviceService,
-    @Inject(MAT_DIALOG_DATA) public data: IDevicePair,
+    @Inject(MAT_DIALOG_DATA) public data: DevicePair,
   ) {
   }
 
@@ -28,7 +27,7 @@ export class DeleteDialogComponent implements OnInit {
 
   confirmDelete() {
     try {
-      this.devSrv.CRUDPair([this.data], CRUDAction.DELETE, true).toPromise();
+      this.devSrv.CRUDPair([this.data], CRUDAction.DELETE, true);
     } catch (e) {
       this.snack.open(e.toString(), 'DISMISS', {duration: 2000});
     }
