@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from '@angular/material';
 import {DEVICE_SERVICE, DevicePair, IDeviceService} from '../../core/api/device/device';
 import {CRUDAction} from '../../core/crud-action.enum';
+import {SNACK_DELAY} from '../../core/constants';
 
 @Component({
   selector: 'app-delete-dialog',
@@ -29,7 +30,7 @@ export class DeleteDialogComponent implements OnInit {
     try {
       this.devSrv.CRUDPair([this.data], CRUDAction.DELETE, true);
     } catch (e) {
-      this.snack.open(e.toString(), 'DISMISS', {duration: 2000});
+      this.snack.open(e.toString(), 'DISMISS', {duration: SNACK_DELAY});
     }
     this.dialogRef.close();
   }

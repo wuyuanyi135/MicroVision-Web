@@ -43,3 +43,8 @@ td, th {
 .connected {
   background: mat-color($mat-green, 100);
 }
+
+mat-spinner {
+  display: inline-block;
+  margin-left: 10px;
+}

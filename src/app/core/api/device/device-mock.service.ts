@@ -7,6 +7,7 @@ import {BehaviorSubject, Observable, of, throwError} from 'rxjs';
 import {ConnectAction} from '../../connect-action.enum';
 import {delay} from 'q';
 import {take} from 'rxjs/operators';
+import {SNACK_DELAY} from '../../constants';
 
 @Injectable()
 export class DeviceMockService implements IDeviceService {
@@ -68,7 +69,7 @@ export class DeviceMockService implements IDeviceService {
           throw new Error('Controller does not exist');
         }
         if (faker.random.boolean()) {
-          setTimeout(() => subscriber.error('Connection Failed'), 2000);
+          setTimeout(() => subscriber.error('Connection Failed'), SNACK_DELAY);
         } else {
           await delay(1000);
           const devicePair = this.DevicePairs.value.find(value => pair.id === value.id);
@@ -83,7 +84,7 @@ export class DeviceMockService implements IDeviceService {
     });
   }
 
-  refresh(deviceDiscovery: boolean) {
+  async refresh(deviceDiscovery: boolean): Promise<void> {
     if (deviceDiscovery) {
       const camera = [];
       for (let i = 0; i < faker.random.number(10); i++) {

@@ -1,6 +1,7 @@
 import {IStorageService, StorageInfo} from './storage';
 import {Observable} from 'rxjs';
 import * as faker from 'faker';
+import {SNACK_DELAY} from '../../constants';
 
 export class StorageMockService implements IStorageService {
   storageStream: Observable<StorageInfo>;
@@ -18,7 +19,7 @@ export class StorageMockService implements IStorageService {
   constructor() {
     this.storageStream = new Observable(subscriber => {
       subscriber.next(this.getStorage());
-      const timer = setInterval(() => subscriber.next(this.getStorage()), 2000);
+      const timer = setInterval(() => subscriber.next(this.getStorage()), SNACK_DELAY);
       return () => {
         clearInterval(timer);
       };

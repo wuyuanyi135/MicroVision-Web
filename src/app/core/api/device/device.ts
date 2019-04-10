@@ -25,7 +25,7 @@ export interface IDeviceService {
   DevicePairs: Observable<DevicePair[]>;
   AllDevices: Observable<DeviceList>;
 
-  refresh(deviceDiscovery: boolean);
+  refresh(deviceDiscovery: boolean): Promise<void>;
 
   CRUDPair(pair: DevicePair[], op: CRUDAction, refresh: boolean): Promise<string>;
 

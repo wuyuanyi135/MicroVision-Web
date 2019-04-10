@@ -3,6 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from '@angular/material';
 import {DEVICE_SERVICE, DevicePair, IDeviceService} from '../../core/api/device/device';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {CRUDAction} from '../../core/crud-action.enum';
+import {SNACK_DELAY} from '../../core/constants';
 
 @Component({
   selector: 'app-device-configuration-dialog',
@@ -30,8 +31,8 @@ export class DeviceConfigurationDialogComponent implements OnInit {
 
   buildForm() {
     this.fg = this.formBuilder.group({
-        camera: new FormControl(this.create ? '' : this.data.camera, [Validators.required]),
-        controller: new FormControl(this.create ? '' : this.data.controller, [Validators.required]),
+        camera: new FormControl(this.create ? '' : this.data.camera.displayName, [Validators.required]),
+        controller: new FormControl(this.create ? '' : this.data.controller.displayName, [Validators.required]),
       }
     );
   }
@@ -40,8 +41,10 @@ export class DeviceConfigurationDialogComponent implements OnInit {
   }
 
   async submit() {
+    const id = this.data ? this.data.id : null;
     const pair: DevicePair = {
-      camera: {displayName:},
+      id,
+      camera: this.fg.value.camera,
       controller: this.fg.value.controller,
     };
     try {
@@ -51,7 +54,7 @@ export class DeviceConfigurationDialogComponent implements OnInit {
         await this.devSrv.CRUDPair([pair], CRUDAction.UPDATE, true);
       }
     } catch (e) {
-      this.snack.open(e.toString(), 'DISMISS', {duration: 2000});
+      this.snack.open(e.toString(), 'DISMISS', {duration: SNACK_DELAY});
     }
     this.dialogRef.close();
   }

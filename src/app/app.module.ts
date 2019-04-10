@@ -35,7 +35,7 @@ import { DatabaseComponent } from './database/database.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ReadableSizePipe } from './core/pipe/readable-size.pipe';
 import { SanitizeUrlPipe } from './core/pipe/sanitize-url.pipe';
-import {MatProgressBarModule} from '@angular/material';
+import {MatProgressBarModule, MatProgressSpinnerModule} from '@angular/material';
 import { StorageFooterComponent } from './storage-footer/storage-footer.component';
 import { DetailedViewComponent } from './database/detailed-view/detailed-view.component';
 import { ConfirmDialogComponent } from './common/dialogs/confirm/confirm-dialog.component';
@@ -84,6 +84,7 @@ import { ToSafeUrlPipe } from './core/pipe/to-safe-url.pipe';
     ResizableModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
     MatProgressBarModule,
+    MatProgressSpinnerModule,
   ],
   bootstrap: [AppComponent],
   entryComponents: [

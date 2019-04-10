@@ -1,5 +1,8 @@
 <div class="mat-typography" id="container">
-  <span class="mat-h2 header">Device Pair Configuration</span>
+  <div class="mat-h2 header">
+    Device Pair Configuration
+    <mat-spinner *ngIf="loading" mode="indeterminate" diameter="30"></mat-spinner>
+  </div>
 
   <table #deviceTable mat-table class="mat-elevation-z1" [dataSource]="deviceSrv.DevicePairs | async">
     <ng-container matColumnDef="index">
@@ -9,12 +12,12 @@
 
     <ng-container matColumnDef="camera">
       <th mat-header-cell *matHeaderCellDef> Camera </th>
-      <td mat-cell (click)="toggleConnection(element)" *matCellDef="let element"> {{element.camera}} </td>
+      <td mat-cell (click)="toggleConnection(element)" *matCellDef="let element"> {{element.camera.displayName}} </td>
     </ng-container>
 
     <ng-container matColumnDef="controller">
       <th mat-header-cell *matHeaderCellDef> Controller </th>
-      <td mat-cell (click)="toggleConnection(element)" *matCellDef="let element"> {{element.controller}} </td>
+      <td mat-cell (click)="toggleConnection(element)" *matCellDef="let element"> {{element.controller.displayName}} </td>
     </ng-container>
 
     <ng-container matColumnDef="edit">
